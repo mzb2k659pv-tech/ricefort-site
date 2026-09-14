@@ -149,7 +149,8 @@ window.RICEFORT_CONTENT = {
       messagePlaceholder: '請告訴我們你的材料、尺寸、數量、時程或合作構想。',
       consent: '我同意 RiceFort 就此詢問聯絡我。',
       submit: '發送詢問',
-      sent: '已準備好你的電郵草稿。請在電郵程式中發送。'
+      sent: '感謝你的詢問，我們已收到資料，會盡快與你聯絡。',
+      failed: '暫時未能送出，請稍後再試，或直接電郵至 info@ricefort.com。'
     },
     footerTagline: 'Born from Rice, Built for Lives'
   },
@@ -257,7 +258,8 @@ window.RICEFORT_CONTENT = {
       messagePlaceholder: 'Please tell us about your material, size, quantity, schedule or collaboration idea.',
       consent: 'I agree to be contacted by RiceFort about this enquiry.',
       submit: 'SEND ENQUIRY',
-      sent: 'Your email draft is ready. Please send it from your email app.'
+      sent: 'Thank you. We have received your enquiry and will be in touch shortly.',
+      failed: 'We could not send your enquiry right now. Please try again later or email info@ricefort.com directly.'
     },
     footerTagline: 'Born from Rice, Built for Lives'
   }
