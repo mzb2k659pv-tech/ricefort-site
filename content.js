@@ -37,9 +37,9 @@ window.RICEFORT_CONTENT = {
     figmaBoardSwatches: ['assets/figma-board-swatch-8258.png', 'assets/figma-board-swatch-8259.png', 'assets/figma-board-swatch-8262.png', 'assets/figma-board-swatch-8267.png', 'assets/figma-board-swatch-8264.png', 'assets/figma-board-swatch-8265.png', 'assets/figma-board-swatch-8266.png', 'assets/figma-board-swatch-8260.png', 'assets/figma-board-swatch-8269.png', 'assets/figma-board-swatch-8270.png', 'assets/figma-board-swatch-8271.png', 'assets/figma-board-swatch-8272.png', 'assets/figma-board-swatch-8263.png', 'assets/figma-board-swatch-8268.png']
     ,figmaServiceHeroCn: 'assets/figma-service-hero-cn.png'
     ,figmaServiceHeroEn: 'assets/figma-service-hero-en.png'
-    ,figmaServiceStagesCn: ['assets/figma-service-01-cn.png', 'assets/figma-service-02-cn.png', 'assets/figma-service-03-cn.png', 'assets/figma-service-04-cn.png', 'assets/service-workshop.jpeg?v=hires-20260913']
-    ,figmaServiceStagesEn: ['assets/figma-service-01-en.png', 'assets/figma-service-02-en.png', 'assets/figma-service-03-en.png', 'assets/figma-service-04-en.png', 'assets/service-workshop.jpeg?v=hires-20260913']
-    ,figmaServiceMarquee: ['assets/service-marquee-home.png', 'assets/service-marquee-retail.png', 'assets/service-marquee-bedroom.jpeg', 'assets/service-marquee-living.jpeg', 'assets/service-marquee-colour.jpeg', 'assets/service-marquee-lounge.jpeg', 'assets/service-marquee-exhibition.jpeg', 'assets/service-marquee-workspace.jpeg', 'assets/service-workshop.jpeg?v=hires-20260913']
+    ,figmaServiceStagesCn: ['assets/figma-service-01-cn.png', 'assets/figma-service-02-cn.png', 'assets/figma-service-03-cn.png', 'assets/figma-service-04-cn.png', 'assets/IMG_1079.jpeg?v=workshop-20260914']
+    ,figmaServiceStagesEn: ['assets/figma-service-01-en.png', 'assets/figma-service-02-en.png', 'assets/figma-service-03-en.png', 'assets/figma-service-04-en.png', 'assets/IMG_1079.jpeg?v=workshop-20260914']
+    ,figmaServiceMarquee: ['assets/service-marquee-home.png', 'assets/service-marquee-retail.png', 'assets/service-marquee-bedroom.jpeg', 'assets/service-marquee-living.jpeg', 'assets/service-marquee-colour.jpeg', 'assets/service-marquee-lounge.jpeg', 'assets/service-marquee-exhibition.jpeg', 'assets/service-marquee-workspace.jpeg', 'assets/IMG_1079.jpeg?v=workshop-20260914']
     ,figmaCaseSocialCn: 'assets/大埔婆婆.png?v=case-20260914'
     ,figmaCaseSocialEn: 'assets/大埔婆婆.png?v=case-20260914'
     ,figmaContactHero: 'assets/figma-contact-hero.png?v=raw-20260913'
