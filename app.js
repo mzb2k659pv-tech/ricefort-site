@@ -199,7 +199,7 @@
     return '<div class="figma-contact ' + (state.lang === 'en' ? 'figma-contact-en' : 'figma-contact-cn') + '">' +
       '<section class="figma-contact-immersive"><div class="figma-contact-copy"><p class="section-label">' + copy.label + '  /  CONTACT</p><h1>' + text(copy.title) + '</h1><p>' + escapeHtml(copy.intro) + '</p><div class="figma-contact-email"><span>EMAIL</span><a href="mailto:info@ricefort.com">info@ricefort.com</a></div></div>' +
         '<section class="figma-contact-panel"><header><p class="section-label">RICEFORT LIMITED</p><h2>' + copy.formTitle + '</h2><p class="figma-contact-hint">' + copy.formHint + '</p></header>' +
-          '<form id="contact-form"><label><span>' + fields[0] + '</span><select required name="project"><option value="" selected disabled>' + copy.selectPlaceholder + '</option><option>' + (state.lang === 'zh' ? '材料供應' : 'Material supply') + '</option><option>' + (state.lang === 'zh' ? '項目合作' : 'Project collaboration') + '</option><option>' + (state.lang === 'zh' ? '其他' : 'Other') + '</option></select></label>' +
+          '<form id="contact-form" action="https://formspree.io/f/myeyqldz" method="POST"><label><span>' + fields[0] + '</span><select required name="project"><option value="" selected disabled>' + copy.selectPlaceholder + '</option><option>' + (state.lang === 'zh' ? '材料供應' : 'Material supply') + '</option><option>' + (state.lang === 'zh' ? '項目合作' : 'Project collaboration') + '</option><option>' + (state.lang === 'zh' ? '其他' : 'Other') + '</option></select></label>' +
             '<label><span>' + fields[1] + '</span><input name="company" autocomplete="organization"></label>' +
             '<label><span>' + fields[2] + '</span><input required name="name" autocomplete="name"></label>' +
             '<label><span>' + fields[3] + '</span><input required type="email" name="email" autocomplete="email"></label>' +
@@ -240,13 +240,27 @@
     });
     var form = document.querySelector('#contact-form');
     if (form) {
-      form.addEventListener('submit', function (event) {
+      form.addEventListener('submit', async function (event) {
         event.preventDefault();
         var formData = new FormData(form);
-        var subject = state.lang === 'zh' ? 'RiceFort 項目查詢' : 'RiceFort project enquiry';
-        var body = ['Name: ' + formData.get('name'), 'Email: ' + formData.get('email'), 'Company: ' + formData.get('company'), 'Telephone: ' + formData.get('phone'), 'Project: ' + formData.get('project'), 'Budget: ' + formData.get('budget'), '', formData.get('message')].join('\n');
-        document.querySelector('#form-status').textContent = data.contact.sent;
-        location.href = 'mailto:info@ricefort.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        var status = document.querySelector('#form-status');
+        var submit = form.querySelector('button[type="submit"]');
+        submit.disabled = true;
+        status.textContent = state.lang === 'zh' ? '正在發送…' : 'Sending…';
+        try {
+          var response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' }
+          });
+          if (!response.ok) throw new Error('Form submission failed');
+          form.reset();
+          status.textContent = data.contact.sent;
+        } catch (error) {
+          status.textContent = data.contact.failed;
+        } finally {
+          submit.disabled = false;
+        }
       });
     }
     var observer = new IntersectionObserver(function (entries) {
