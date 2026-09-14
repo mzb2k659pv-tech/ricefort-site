@@ -40,8 +40,8 @@ window.RICEFORT_CONTENT = {
     ,figmaServiceStagesCn: ['assets/figma-service-01-cn.png', 'assets/figma-service-02-cn.png', 'assets/figma-service-03-cn.png', 'assets/figma-service-04-cn.png', 'assets/service-workshop.jpeg?v=hires-20260913']
     ,figmaServiceStagesEn: ['assets/figma-service-01-en.png', 'assets/figma-service-02-en.png', 'assets/figma-service-03-en.png', 'assets/figma-service-04-en.png', 'assets/service-workshop.jpeg?v=hires-20260913']
     ,figmaServiceMarquee: ['assets/service-marquee-home.png', 'assets/service-marquee-retail.png', 'assets/service-marquee-bedroom.jpeg', 'assets/service-marquee-living.jpeg', 'assets/service-marquee-colour.jpeg', 'assets/service-marquee-lounge.jpeg', 'assets/service-marquee-exhibition.jpeg', 'assets/service-marquee-workspace.jpeg', 'assets/service-workshop.jpeg?v=hires-20260913']
-    ,figmaCaseSocialCn: 'assets/figma-case-social-cn.jpg?v=raw-20260913'
-    ,figmaCaseSocialEn: 'assets/figma-case-social-en.jpg?v=raw-20260913'
+    ,figmaCaseSocialCn: 'assets/figma-case-social-masked.png?v=privacy-20260914'
+    ,figmaCaseSocialEn: 'assets/figma-case-social-masked.png?v=privacy-20260914'
     ,figmaContactHero: 'assets/figma-contact-hero.png?v=raw-20260913'
   },
   zh: {
