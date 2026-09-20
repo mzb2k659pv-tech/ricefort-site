@@ -540,3 +540,47 @@
   });
   render();
 }());
+
+
+/* Public case-study gallery enhancement */
+(function () {
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, function (char) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]; });
+  }
+  function br(value) { return esc(value).replace(/\n/g, '<br>'); }
+  function img(src, alt) { return '<img src="' + src + '" alt="' + esc(alt) + '">'; }
+  function gallery(images, title, label) {
+    return '<div class="figma-case-gallery"><figure><img data-case-gallery-main src="' + images[0] + '" alt="' + esc(title) + '"></figure><div class="figma-case-gallery-nav">' + images.map(function (src, i) { return '<button type="button" class="figma-case-gallery-thumb' + (i === 0 ? ' is-active' : '') + '" data-case-gallery-thumb data-case-src="' + src + '" aria-label="' + esc(label + ' ' + (i + 1)) + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '">' + img(src, '') + '</button>'; }).join('') + '</div></div>';
+  }
+  function mountPublicCases() {
+    if (location.hash !== '#cases') return;
+    var source = window.RICEFORT_CONTENT;
+    if (!source || !source.zh.cases.workshop || !source.assets.figmaCaseWorkshop) return;
+    var lang = localStorage.getItem('ricefort-language') || 'zh';
+    var data = source[lang] || source.zh;
+    var copy = data.cases;
+    var workshop = copy.workshop;
+    var north = copy.north;
+    var social = lang === 'en' ? source.assets.figmaCaseSocialEn : source.assets.figmaCaseSocialCn;
+    var main = document.querySelector('main');
+    if (!main) return;
+    main.innerHTML = '<div class="figma-cases ' + (lang === 'en' ? 'figma-cases-en' : 'figma-cases-cn') + '">' +
+      '<section class="figma-case-hero figma-case-hero-primary"><div class="figma-case-social-media"><figure>' + img(social, 'RiceFort social service case study') + '</figure></div><div><p class="section-label">' + esc(copy.label) + '</p><p class="figma-case-category">' + esc(copy.category) + '</p><h1>' + br(copy.title) + '</h1><dl><div><dt>' + esc(copy.partnerLabel) + '</dt><dd>' + esc(copy.partner) + '</dd></div><div><dt>' + esc(copy.programmeLabel) + '</dt><dd>' + br(copy.programme) + '</dd></div></dl><p class="figma-case-funding">' + esc(copy.funding) + '</p></div></section>' +
+      '<section class="figma-case-hero figma-case-workshop"><div><p class="section-label">02  /  ' + esc(workshop.category) + '</p><p class="figma-case-category">' + esc(workshop.category) + '</p><h1>' + br(workshop.title) + '</h1><dl><div><dt>' + esc(workshop.partnerLabel) + '</dt><dd>' + esc(workshop.partner) + '</dd></div></dl><p class="figma-case-funding">' + esc(workshop.body) + '</p></div>' + gallery(source.assets.figmaCaseWorkshop, workshop.title, workshop.galleryLabel) + '</section>' +
+      '<section class="figma-case-hero figma-case-north">' + gallery(source.assets.figmaCaseNorth, north.title, north.galleryLabel) + '<div><p class="section-label">03  /  ' + esc(north.category) + '</p><p class="figma-case-category">' + esc(north.category) + '</p><h1>' + br(north.title) + '</h1><dl><div><dt>' + esc(north.partnerLabel) + '</dt><dd>' + esc(north.partner) + '</dd></div><div><dt>' + esc(north.programmeLabel) + '</dt><dd>' + br(north.programme) + '</dd></div></dl><p class="figma-case-funding">' + esc(north.body) + '</p></div></section>' +
+      '<section class="figma-case-statement"><p class="section-label">01  /  ' + (lang === 'en' ? 'SOCIAL SERVICE' : '社會服務') + '</p><h2>' + br(copy.statement) + '</h2></section><section class="figma-case-close"><span>RICEFORT LIMITED&nbsp;&nbsp;·&nbsp;&nbsp;REHUSK BOARD&nbsp;&nbsp;·&nbsp;&nbsp;BIO-BASED MATERIALS</span></section></div>';
+  }
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest && event.target.closest('[data-case-gallery-thumb]');
+    if (button) {
+      var galleryRoot = button.closest('.figma-case-gallery');
+      var mainImage = galleryRoot && galleryRoot.querySelector('[data-case-gallery-main]');
+      if (mainImage) mainImage.src = button.dataset.caseSrc;
+      if (galleryRoot) galleryRoot.querySelectorAll('[data-case-gallery-thumb]').forEach(function (thumb) { var active = thumb === button; thumb.classList.toggle('is-active', active); thumb.setAttribute('aria-pressed', String(active)); });
+      return;
+    }
+    if (event.target.closest && event.target.closest('[data-language]') && location.hash === '#cases') window.setTimeout(mountPublicCases, 0);
+  });
+  window.addEventListener('hashchange', function () { window.setTimeout(mountPublicCases, 0); });
+  mountPublicCases();
+}());
