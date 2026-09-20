@@ -771,3 +771,32 @@ textarea { resize: vertical; }
   .footer-contact { margin-top: 42px !important; }
   .footer-bottom { margin: 0 28px; padding-bottom: 30px; gap: 15px; flex-direction: column; }
 }
+
+
+/* Case-study galleries */
+.figma-case-hero-primary { min-height: 820px; }
+.figma-case-hero-primary .figma-case-social-media { padding: 34px 0 0 42px; }
+.figma-case-hero-primary .figma-case-social-media figure { width: min(100%, 560px); height: 650px; margin: 0; }
+.figma-case-workshop { min-height: 860px; grid-template-columns: 1fr 650px; border-top: 1px solid var(--line); }
+.figma-case-workshop > div:first-child { padding-top: 126px; }
+.figma-case-workshop > .figma-case-gallery { padding: 64px 44px 72px 0; }
+.figma-case-north { min-height: 900px; grid-template-columns: 650px 1fr; border-top: 1px solid var(--line); }
+.figma-case-north > .figma-case-gallery { padding: 64px 0 72px 44px; }
+.figma-case-north > div:last-child { padding-top: 126px; }
+.figma-case-gallery figure { height: 600px; margin: 0; overflow: hidden; background: var(--paper); }
+.figma-case-gallery figure img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
+.figma-case-gallery-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+.figma-case-gallery-thumb { height: 64px; min-width: 0; padding: 0; overflow: hidden; border: 1px solid transparent; background: transparent; cursor: pointer; opacity: .55; transition: opacity .2s ease, border-color .2s ease, transform .2s ease; }
+.figma-case-gallery-thumb:hover, .figma-case-gallery-thumb:focus-visible, .figma-case-gallery-thumb.is-active { border-color: var(--ink); opacity: 1; outline: none; }
+.figma-case-gallery-thumb:hover { transform: translateY(-2px); }
+.figma-case-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 720px) {
+  .figma-case-hero-primary .figma-case-social-media { padding: 0; }
+  .figma-case-hero-primary .figma-case-social-media figure, .figma-case-workshop > .figma-case-gallery figure, .figma-case-north > .figma-case-gallery figure { width: 100%; height: 430px; }
+  .figma-case-workshop > div:first-child, .figma-case-north > div:last-child { padding-top: 64px; }
+  .figma-case-workshop > .figma-case-gallery, .figma-case-north > .figma-case-gallery { padding: 0; }
+  .figma-case-workshop { display: flex; flex-direction: column; }
+  .figma-case-workshop > .figma-case-gallery { order: -1; }
+  .figma-case-gallery-nav { padding: 0 28px; margin: 10px 0 34px; gap: 6px; }
+  .figma-case-gallery-thumb { height: 45px; }
+}
