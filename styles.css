@@ -800,3 +800,8 @@ textarea { resize: vertical; }
   .figma-case-gallery-nav { padding: 0 28px; margin: 10px 0 34px; gap: 6px; }
   .figma-case-gallery-thumb { height: 45px; }
 }
+
+
+/* First case: retain the entire portrait within the image frame. */
+.figma-case-hero-primary .figma-case-social-media figure { background: var(--paper); }
+.figma-case-hero-primary .figma-case-social-media figure img { object-fit: contain; object-position: center; }
