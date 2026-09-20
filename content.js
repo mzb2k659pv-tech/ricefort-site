@@ -264,3 +264,12 @@ window.RICEFORT_CONTENT = {
     footerTagline: 'Born from Rice, Built for Lives'
   }
 };
+
+
+// Case-study galleries
+window.RICEFORT_CONTENT.assets.figmaCaseWorkshop = ['assets/DSC_8284-11.jpeg', 'assets/Gemini_Generated_Image_tbs7wmtbs7wmtbs7.jpeg', 'assets/Gemini_Generated_Image_w6hr1qw6hr1qw6hr.jpeg', 'assets/Gemini_Generated_Image_7asni87asni87asn.jpeg'];
+window.RICEFORT_CONTENT.assets.figmaCaseNorth = ['assets/case-north-before.png', 'assets/case-north-cabinet-wide.jpeg', 'assets/case-north-cabinet-shelf.jpeg', 'assets/case-north-cabinet-tall.jpeg'];
+window.RICEFORT_CONTENT.zh.cases.workshop = { category: '社區工作坊', title: '親子小燈箱工作坊', partnerLabel: '合作夥伴', partner: 'SVhk × 循道衛理楊震社會服務處 × RiceFort（稻一）', body: '工作坊與SVhk及循道衛理楊震社會服務處合作舉辦，使用我們研究的稻築板，親手製作獨一無二的升級再造小燈箱。', galleryLabel: '點擊縮圖切換相片' };
+window.RICEFORT_CONTENT.zh.cases.north = { category: '社會服務', title: 'SVHK－信和 創響北都', partnerLabel: '合作夥伴', partner: '信和集團 × SVhk × 循道衛理楊震社會服務處 × RiceFort（稻一）', programmeLabel: '支援計劃', programme: '北都基層家庭傢俬支援計劃', body: '本項目獲信和集團和SVhk資助，與循道衛理楊震社會服務處合作，爲 2 位基層家庭度身訂造稻築板傢俬。', galleryLabel: '點擊縮圖切換相片' };
+window.RICEFORT_CONTENT.en.cases.workshop = { category: 'COMMUNITY WORKSHOP', title: 'Parent-Child Light Box Workshop', partnerLabel: 'PARTNERS', partner: 'SVhk × Yang Memorial Methodist Social Service × RiceFort', body: 'Together with SVhk and Yang Memorial Methodist Social Service, participants used our ReHusk Board to make one-of-a-kind upcycled light boxes by hand.', galleryLabel: 'Select a thumbnail to view each photo' };
+window.RICEFORT_CONTENT.en.cases.north = { category: 'SOCIAL SERVICE', title: 'SVHK – Sino Northern Metropolis Initiative', partnerLabel: 'PARTNERS', partner: 'Sino Group × SVhk × Yang Memorial Methodist Social Service × RiceFort', programmeLabel: 'SUPPORT PROGRAMME', programme: 'Furniture Support Programme for Northern Metropolis Families', body: 'Funded by Sino Group and SVhk in collaboration with Yang Memorial Methodist Social Service, this project provides customised ReHusk Board furniture for two grassroots households.', galleryLabel: 'Select a thumbnail to view each photo' };
