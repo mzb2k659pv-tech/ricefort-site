@@ -24,7 +24,10 @@
       '</div>';
   }
   function navLinks(data, location) {
-    return data.nav.map(function (item) {
+    var links = data.nav.slice();
+    links.splice(Math.max(0, links.length - 1), 0, ['furniture', state.lang === 'zh' ? '傢俬訂製' : 'Custom Furniture']);
+    return links.map(function (item) {
+      if (item[0] === 'furniture') return '<a href="furniture-custom.html">' + item[1] + '</a>';
       return '<a href="#' + item[0] + '" class="' + (item[0] === location ? 'is-current' : '') + '">' + item[1] + '</a>';
     }).join('');
   }

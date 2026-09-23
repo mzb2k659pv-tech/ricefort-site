@@ -1,0 +1,2263 @@
+<!DOCTYPE html><html lang="zh-Hant" data-edition="customer"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; connect-src 'self' https://formspree.io; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f8f5ee">
+<title>RiceFort · 稻一傢俬設計室</title>
+<style>
+:root{
+  /* Brand-inspired palette. Not claimed as extracted live website CSS. */
+  --bg:#f8f5ee;--paper:#fffefa;--ink:#372b1d;
+  --gold:#c9ae78;--accent:#73562d;--accent-dark:#503b20;
+  --muted:#7b715f;--line:#e3dbcb;--pale:#f2eadb;
+  --sand:#dfcda7;--red:#a34237;--radius:20px;--max:1540px
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  margin:0;padding-bottom:110px;background:var(--bg);color:var(--ink);
+  font:14px/1.65 "PingFang TC","Microsoft JhengHei",Inter,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased
+}
+button,input,select,textarea{font:inherit}
+button,a,input,select,textarea,summary{-webkit-tap-highlight-color:transparent;outline-offset:4px}
+button{cursor:pointer;color:inherit}
+button:disabled{cursor:not-allowed;opacity:.42}
+:focus-visible{outline:3px solid var(--gold)}
+a{color:var(--accent)}
+svg{display:block}
+h1,h2,h3,p{margin-top:0}
+h2{font-size:30px;letter-spacing:-.7px;line-height:1.35;margin-bottom:10px}
+h3{font-size:17px;margin-bottom:12px}
+p{margin-bottom:14px}
+small,.muted{color:var(--muted)}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.icon{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:10px 16px;border:1px solid var(--line);
+  border-radius:11px;background:var(--paper);text-decoration:none;
+  font-size:13px;font-weight:600;transition:background .18s,border-color .18s
+}
+.btn:hover:not(:disabled){background:#f5eedf;border-color:#c6af82}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover:not(:disabled){background:var(--accent-dark)}
+.btn.quiet{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.small{min-height:36px;padding:6px 11px;font-size:12px}
+.btn.icon-only{width:40px;min-height:40px;padding:9px}
+.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.between{justify-content:space-between}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.note{color:var(--muted);font-size:12px;line-height:1.85}
+.eyebrow{color:var(--accent);font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;background:var(--pale);color:var(--accent);font-size:11px}
+.rule{height:1px;background:var(--line);margin:20px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.field{margin-bottom:15px;min-width:0}
+.field:last-child{margin-bottom:0}
+.field small{display:block;margin-top:5px;font-size:11px}
+.field-error{color:var(--red)!important;font-size:11px!important}
+label,.field-label{display:block;font-size:12px;font-weight:650;margin-bottom:7px}
+input,select,textarea{
+  width:100%;min-height:45px;padding:10px 12px;border:1px solid #d8cdb9;
+  border-radius:10px;background:#fffefa;color:var(--ink);font-size:15px
+}
+input[type=checkbox]{width:17px;height:17px;min-height:0;accent-color:var(--accent)}
+input[type=range]{min-height:24px;padding:0;border:0;accent-color:var(--accent)}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--red);background:#fff6f2}
+.grid3 input{padding:10px 9px}
+.check-label{display:flex;align-items:center;gap:9px;font-weight:450;font-size:12px}
+.error-box{padding:13px 16px;border:1px solid #e6c3ba;border-radius:11px;background:#fff5f1;color:var(--red);margin-bottom:16px;font-size:12px}
+
+.header{max-width:var(--max);margin:auto;padding:22px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:14px;padding:0;border:0;background:transparent;text-align:left}
+.brand-mark{width:48px;height:48px;color:var(--gold)}
+.wordmark{display:block;font-family:"Courier New","Microsoft JhengHei",monospace;font-size:25px;letter-spacing:1.2px;font-weight:450;line-height:1.2}
+.brand small{display:block;font-size:10px;letter-spacing:1.8px;margin-top:6px}
+.header-actions{display:flex;align-items:center;gap:10px}
+.website{font-size:12px;color:var(--muted);text-decoration:none;margin-right:12px}
+.menu{position:relative}
+.menu>summary{list-style:none}
+.menu>summary::-webkit-details-marker{display:none}
+.menu-panel{position:absolute;right:0;top:53px;z-index:100;width:240px;padding:8px;border:1px solid var(--line);border-radius:15px;background:var(--paper);box-shadow:0 15px 40px #372b1d20}
+.menu-panel .btn{width:100%;justify-content:flex-start;border:0}
+.menu-panel hr{border:0;border-top:1px solid var(--line);margin:7px}
+.steps-wrap{position:sticky;top:0;z-index:40;background:#fffdf8f5;backdrop-filter:blur(12px);border-block:1px solid var(--line)}
+.steps{max-width:var(--max);margin:auto;padding:12px 30px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{display:flex;align-items:center;gap:12px;padding:8px 12px;border:0;border-radius:11px;background:transparent;text-align:left}
+.step:hover{background:#f5efe2}
+.step[aria-current=step]{background:var(--pale)}
+.step-number{display:grid;place-items:center;width:33px;height:33px;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--muted);font-size:11px;flex:none}
+.step[aria-current=step] .step-number{background:var(--accent);border-color:var(--accent);color:#fff}
+.step strong{display:block;font-size:13px;font-weight:650}
+.step small{display:block;font-size:9px;letter-spacing:.5px}
+main{max-width:var(--max);margin:auto;padding:31px 30px}
+.page-heading{margin-bottom:24px}
+.page-heading p{color:var(--muted);margin-bottom:0}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:65px;align-items:center;padding:18px 0 38px}
+.hero h1{font-size:clamp(32px,3.25vw,48px);font-weight:650;line-height:1.35;letter-spacing:-1.6px;margin:13px 0 17px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p:last-child{font-size:14px;line-height:1.9;color:var(--muted);margin:0}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;padding:23px 0 23px 38px;border-left:1px solid var(--line)}
+.hero-stats strong{display:block;font-size:40px;font-weight:450;line-height:1.15;letter-spacing:-1.5px;color:var(--accent)}
+.hero-stats span{display:block;font-size:11px;color:var(--muted);margin-top:9px}
+.filter-card{padding:21px 24px;margin-bottom:23px}
+.spaces{display:flex;gap:9px;overflow:auto;padding-bottom:18px;margin-bottom:17px;border-bottom:1px solid var(--line);scrollbar-width:thin}
+.space{flex:none;min-height:38px;padding:8px 15px;border:1px solid var(--line);border-radius:30px;background:var(--paper);font-size:12px;white-space:nowrap}
+.space span{margin-left:6px;font-size:10px;opacity:.8}
+.space[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.filter-row{display:grid;grid-template-columns:minmax(220px,1.7fr) 1fr auto;gap:15px;align-items:end}
+.search-box{position:relative}
+.search-box .icon{position:absolute;left:14px;top:15px;color:var(--muted)}
+.search-box input{padding-left:42px}
+.filter-meta{display:flex;justify-content:space-between;gap:15px;margin-top:13px;color:var(--muted);font-size:11px}
+.catalogue{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;scroll-margin-top:100px}
+.product{position:relative;display:flex;flex-direction:column;min-width:0;min-height:292px;padding:21px;border:1px solid var(--line);border-radius:20px;background:var(--paper);text-align:left;transition:transform .18s,border-color .18s,box-shadow .18s}
+.product:hover{transform:translateY(-3px);background:#fffaf0;border-color:#baa271;box-shadow:0 9px 22px #57412709}
+.product[aria-pressed=true]{background:#f7efdf;border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.product .thumb{width:100%;height:178px;margin:6px 0 17px}
+.product-name{display:block;font-size:16px;font-weight:650;line-height:1.5;margin-top:auto}
+.product-dim{display:block;font-size:12px;color:var(--muted);margin-top:10px}
+.product-check{position:absolute;left:15px;top:13px;display:none;background:var(--accent);color:#fff;font-size:10px;border-radius:20px;padding:3px 8px}
+.product[aria-pressed=true] .product-check{display:block}
+.product-office{position:absolute;right:14px;top:14px;color:var(--muted);font-size:9px;letter-spacing:.5px}
+.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin:28px 0 18px;flex-wrap:wrap}
+.page-button{min-width:38px;min-height:38px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.page-button[aria-current=page]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.empty{padding:70px 25px;text-align:center;grid-column:1/-1;border:1px dashed #cbbd9e;border-radius:20px}
+
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:25px;align-items:start}
+.preview-column{min-width:0}
+.preview-card{padding:20px}
+.preview-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.preview-toolbar h3{margin:0}
+.segmented{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:11px}
+.segmented button{min-height:32px;padding:5px 13px;background:transparent;border:0;border-radius:8px;font-size:11px}
+.segmented button[aria-pressed=true]{background:var(--accent);color:#fff}
+.canvas-shell{position:relative;margin-top:16px;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#f6f1e7}
+#preview{display:block;width:100%;height:clamp(350px,50vh,570px);touch-action:none;cursor:grab}
+#preview.dragging{cursor:grabbing}
+.preview-placeholder{height:390px;display:grid;place-items:center;text-align:center;padding:30px;color:var(--muted)}
+.view-badge{position:absolute;left:16px;top:14px;background:#fffdf8cc;padding:4px 9px;border-radius:20px;color:var(--muted);font-size:9px;letter-spacing:1px;pointer-events:none}
+.zoom-tools{position:absolute;right:12px;bottom:12px;display:flex;gap:5px}
+.zoom-tools .btn{background:#fffdf8eb}
+.preview-caption{display:flex;justify-content:space-between;gap:12px;margin:12px 2px 17px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+.inspection{padding:15px 0;border-block:1px solid var(--line)}
+.inspection summary{font-size:12px;color:var(--accent);cursor:pointer;font-weight:600}
+.inspection[open] summary{margin-bottom:16px}
+.inspect-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px}
+.estimate-strip{display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--pale);border-radius:12px;padding:16px 18px;margin-top:18px}
+.estimate-strip small{font-size:11px}
+.estimate-strip strong{font-size:28px;line-height:1.2;font-weight:550;letter-spacing:-.5px}
+.preview-note{margin:15px 4px 0}
+.settings{min-width:0}
+.setting{padding:21px;margin-bottom:14px}
+.setting>summary{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:650;cursor:pointer;list-style:none}
+.setting>summary::-webkit-details-marker{display:none}
+.setting>summary::after{content:"+";font-size:20px;font-weight:400;color:var(--muted);margin-left:auto}
+.setting[open]>summary::after{content:"−"}
+.setting[open]>summary{margin-bottom:19px}
+.section-num{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:var(--pale);color:var(--accent);font-size:10px}
+.finish-setting{background:#fffcf4;border-color:#d6c193}
+.standard-board{padding:13px 14px;border:1px solid #decca5;border-radius:12px;background:#f5eddc;margin-bottom:18px}
+.standard-board strong{display:block;font-size:13px}
+.standard-board small{display:block;margin-top:4px;font-size:11px}
+.swatches{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.swatch{padding:4px;border:1px solid transparent;border-radius:9px;background:transparent;min-width:0}
+.swatch[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.swatch-color{display:block;width:100%;aspect-ratio:1;border-radius:5px;border:1px solid #5c472c22;background-color:var(--swatch);background-image:radial-gradient(#ffffff66 .6px,transparent .8px),radial-gradient(#584a3038 .5px,transparent .8px);background-size:7px 8px,11px 9px;background-position:1px 1px,4px 5px}
+.swatch-code{display:block;font-size:10px;margin-top:4px;color:var(--muted)}
+.finish-name{font-size:13px;font-weight:650;margin:15px 0 5px}
+.finish-total{margin-top:17px;padding:14px;border-radius:12px;background:var(--pale)}
+.finish-total strong{font-size:23px;font-weight:550}
+.finish-total small{font-size:11px}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0}
+.mini-stat{padding:12px;background:#f7f1e6;border:1px solid var(--line);border-radius:11px}
+.mini-stat small{display:block;font-size:10px}
+.mini-stat b{display:block;font-size:15px;font-weight:600;margin-top:4px}
+.reference-notes{margin-top:17px}
+.reference-notes summary{font-size:12px;color:var(--accent);cursor:pointer}
+.reference-notes p{font-size:11px;line-height:1.85;color:var(--muted);margin:11px 0}
+.reference-notes ul{font-size:11px;color:var(--muted);padding-left:18px}
+.height-editor{grid-column:1/-1;padding:14px;border:1px solid var(--line);border-radius:12px;background:#faf6ed}
+.height-editor>strong{display:block;font-size:12px;margin-bottom:10px}
+.height-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px}
+.height-inputs label{display:block;font-size:10px;color:var(--muted)}
+.height-inputs input{margin-top:5px}
+.height-total{display:block;margin-top:9px;font-size:10px;color:var(--muted);line-height:1.6}
+.reset-design{width:100%;background:transparent;border-style:dashed;color:var(--muted);font-size:12px}
+.review-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+.stat{padding:17px 19px;background:var(--pale);border-radius:13px}
+.stat small{display:block;font-size:10px;margin-bottom:6px}
+.stat strong{font-size:16px;font-weight:650}
+.drawing-card{padding:20px;margin-bottom:18px}
+#drawings{margin-top:15px;border:1px solid var(--line);border-radius:12px;overflow:auto;background:#fff}
+#drawings svg{width:100%;min-width:860px;height:auto;display:block}
+.drawing-actions{display:flex;gap:8px;flex-wrap:wrap}
+.disclosure{margin-bottom:18px}
+.disclosure>summary{cursor:pointer;font-size:14px;font-weight:650}
+.disclosure[open]>summary{margin-bottom:18px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:12px 15px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--pale);font-weight:650;color:var(--accent)}
+tbody tr:last-child td{border-bottom:0}
+td:last-child,th:last-child{text-align:right}
+.review-notes{margin:0;padding-left:19px;color:var(--muted);font-size:12px}
+.review-notes li{margin:7px 0}
+.quote-layout{display:grid;grid-template-columns:375px minmax(0,1fr);gap:25px;align-items:start}
+.price-card{background:#f1e7d2;border-color:#d9c499;padding:27px}
+.price{font-size:42px;font-weight:550;line-height:1.3;letter-spacing:-1.4px;margin:12px 0 5px}
+.price-caption{font-size:11px;color:var(--muted)}
+.price-breakdown{margin:24px 0 0;padding:0}
+.price-breakdown div{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin-bottom:12px}
+.price-breakdown dt{color:var(--muted)}
+.price-breakdown dd{margin:0;white-space:nowrap}
+.price-breakdown .subtotal{border-top:1px solid #d5c3a1;padding-top:15px;font-weight:650;margin-top:17px}
+.project-fields{display:grid;grid-template-columns:1fr 105px;gap:17px}
+.quote-identity{display:flex;align-items:center;gap:25px;border-block:1px solid var(--line);padding:18px 0;margin:7px 0 20px}
+.quote-thumb{width:130px;height:120px;flex:none;background:#f7f1e5;border-radius:13px}
+.quote-thumb svg{width:100%;height:100%}
+.quote-identity h3{margin-bottom:5px}
+.quote-identity p{margin:0;color:var(--muted);font-size:12px;line-height:1.9}
+.share-actions{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.share-actions .primary{grid-column:1/-1}
+.summary-details{margin-top:21px;padding-top:17px;border-top:1px solid var(--line)}
+.summary-details summary{font-size:12px;color:var(--muted);cursor:pointer}
+.summary-details textarea{margin-top:13px;min-height:320px;font-size:12px;line-height:1.8;background:#fcf8f0}
+.privacy-note{margin:18px 0 0;font-size:11px;color:var(--muted)}
+.request-layout{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}
+.request-actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:18px}
+.request-actions .primary{grid-column:1/-1}
+.request-confirm{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--pale);margin-top:14px}
+.request-confirm .check-label{align-items:flex-start}
+.request-status{padding:14px 16px;border-radius:12px;background:#eef4e8;color:#45613b;font-size:12px;margin-top:14px}
+.footer{max-width:var(--max);margin:15px auto 0;padding:20px 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
+.dock{position:fixed;bottom:0;left:0;right:0;z-index:50;background:#fffdf8f5;backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -6px 25px #57412705}
+.dock-inner{max-width:var(--max);margin:auto;padding:15px 30px;min-height:88px;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:24px;align-items:center}
+.dock-product{min-width:0}
+.dock-product small{display:block;font-size:10px;line-height:1.3}
+.dock-product strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;margin-top:3px}
+.dock-product span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:10px;margin-top:2px}
+.dock-price{text-align:right}
+.dock-price small{display:block;font-size:10px}
+.dock-price strong{font-size:17px;font-weight:650}
+#next{min-width:177px;min-height:48px}
+#toast{position:fixed;bottom:108px;left:50%;transform:translateX(-50%);z-index:200;max-width:min(90vw,650px);padding:12px 19px;border:1px solid #b69b66;border-radius:12px;background:#503b20;color:#fff;font-size:12px;box-shadow:0 8px 30px #372b1d20}
+dialog{max-width:min(92vw,660px);width:660px;max-height:85vh;overflow:auto;padding:27px;border:1px solid var(--line);border-radius:20px;background:var(--paper);color:var(--ink);box-shadow:0 25px 90px #372b1d30}
+dialog::backdrop{background:#372b1d66;backdrop-filter:blur(4px)}
+dialog h3{font-size:21px}
+dialog p{color:var(--muted);font-size:13px}
+.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:23px;flex-wrap:wrap}
+dialog textarea{min-height:270px;font-size:12px}
+.rate-heading{grid-column:1/-1;font-size:13px;padding:15px 0 8px;margin:0;border-bottom:1px solid var(--line)}
+.check-result{padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}
+.check-result.good{color:var(--accent)}
+.check-result.bad{color:var(--red)}
+#printHeading{display:none}
+.customer-only{display:none!important}
+html[data-edition="customer"] .customer-only{display:block!important}
+html[data-edition="customer"] button.customer-only{display:flex!important}
+html[data-edition="customer"] .customer-only[hidden]{display:none!important}
+html[data-edition="customer"] .internal-only{display:none!important}
+html[data-edition="customer"] .steps{grid-template-columns:repeat(3,1fr);max-width:1050px}
+html[data-edition="customer"] .dock-inner{grid-template-columns:auto minmax(0,1fr) auto}
+html[data-edition="customer"] .dock-price{display:none!important}
+@media(min-width:1050px) and (min-height:900px){.preview-column{position:sticky;top:98px}}
+@media(max-width:1240px){
+  .catalogue{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .workspace{grid-template-columns:minmax(0,1fr) 345px;gap:20px}
+  .hero{gap:30px}.hero-stats{padding-left:25px}
+}
+@media(max-width:960px){
+  .catalogue{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .workspace{display:flex;flex-direction:column}
+  .preview-column,.settings{width:100%;position:static}
+  .hero{grid-template-columns:1fr;gap:23px;padding-top:10px}
+  .hero-stats{border:0;padding:0;max-width:460px;gap:35px}
+  .hero-stats strong{font-size:30px}.hero-stats span{margin-top:4px}
+  .quote-layout{grid-template-columns:310px minmax(0,1fr)}
+  .quote-identity{gap:16px}.quote-thumb{width:95px}
+}
+@media(max-width:680px){
+  body{padding-bottom:105px}
+  .header{padding:18px 16px}.brand{gap:9px}.brand-mark{width:35px;height:35px}
+  .wordmark{font-size:18px;letter-spacing:.4px}.brand small{font-size:8px;letter-spacing:1px}
+  .header-actions{gap:6px}.header-actions .btn{padding:8px 10px;font-size:11px}.website{display:none}
+  .steps{padding:8px 9px;gap:3px}.step{padding:6px 3px;gap:5px;justify-content:center}
+  .step-number{width:24px;height:24px;font-size:9px}.step strong{font-size:10px}.step small{display:none}
+  main{padding:22px 16px}h2{font-size:25px}.page-heading p{font-size:12px}
+  .hero{padding:6px 0 28px}.hero h1{font-size:32px;letter-spacing:-1px}.hero p:last-child{font-size:12px}
+  .hero-stats{gap:24px}.hero-stats strong{font-size:27px}.hero-stats span{font-size:10px}
+  .card{padding:18px;border-radius:17px}.filter-card{padding:16px}
+  .spaces{gap:7px;padding-bottom:13px;margin-bottom:15px}.space{padding:7px 12px;font-size:11px;min-height:36px}
+  .filter-row{grid-template-columns:1fr auto;gap:12px}.filter-row>.search-box{grid-column:1/-1}
+  .filter-meta{font-size:10px}.filter-meta span:last-child{display:none}
+  .catalogue{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .product{padding:14px;min-height:235px;border-radius:17px}.product .thumb{height:136px;margin:8px 0 13px}
+  .product-name{font-size:14px}.product-dim{font-size:10px;margin-top:9px}
+  .product-check{left:10px;top:10px;font-size:9px}.product-office{right:10px;top:11px;font-size:8px}
+  .pagination{gap:5px}.page-button{min-width:30px;min-height:34px;font-size:11px}
+  .preview-card{padding:15px}.preview-toolbar h3{font-size:15px}.segmented button{padding:5px 10px;font-size:10px}
+  #preview{height:340px}.preview-caption{font-size:10px}.estimate-strip strong{font-size:23px}
+  .setting{padding:18px}input,select,textarea{font-size:16px}
+  .review-stats{grid-template-columns:1fr 1fr;gap:10px}.stat{padding:14px}.stat strong{font-size:14px}
+  .quote-layout{grid-template-columns:1fr;gap:18px}.price{font-size:39px}.quote-thumb{width:110px}
+  .request-layout{grid-template-columns:1fr;gap:16px}.request-actions{grid-template-columns:1fr}.request-actions .primary{grid-column:auto}
+  .dock-inner{padding:13px;gap:9px;grid-template-columns:auto minmax(0,1fr) auto;min-height:83px}
+  #previous{padding:8px 5px;font-size:10px}.dock-product strong{font-size:11px}.dock-product span{font-size:9px}
+  .dock-price{display:none}#next{min-width:116px;padding:10px;font-size:11px}
+  .footer{padding:18px 16px;flex-direction:column;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}.product:hover{transform:none}
+}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff;padding:0;font-size:11px}
+  .header,.steps-wrap,.footer,.dock,#toast,dialog,.no-print,#step1,#step2,#runtimeError{display:none!important}
+  main{padding:0;margin:0}#step3,#step4{display:block!important}#step4{break-before:page}
+  #printHeading{display:block;margin-bottom:20px}
+  .card{padding:0;border:0;border-radius:0;box-shadow:none}
+  .page-heading{margin-bottom:15px}.page-heading h2{font-size:22px}.page-heading p{font-size:10px}
+  #drawings{border:0;overflow:visible}#drawings svg{min-width:0;width:100%}
+  .review-stats{grid-template-columns:repeat(4,1fr)}
+  .stat{padding:10px;background:#f5efdf!important;print-color-adjust:exact}.stat strong{font-size:12px}
+  .disclosure>summary{list-style:none}.table-wrap{overflow:visible;border:0}
+  table{font-size:9px}th,td{padding:7px;white-space:normal}tr{break-inside:avoid}thead{display:table-header-group}
+  .quote-layout{grid-template-columns:1fr;gap:20px}
+  .price-card{padding:18px;background:#f5efdf!important;print-color-adjust:exact}
+  .price{font-size:35px}.price-breakdown{max-width:490px}.quote-identity{break-inside:avoid}
+  .summary-details,.project-fields,.share-actions,.privacy-note{display:none!important}
+  .review-notes{font-size:10px}.mini-stat{print-color-adjust:exact}
+  html[data-edition="customer"] #step3,html[data-edition="customer"] #step4{display:none!important}
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Sans+HK:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="furniture-custom.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true">
+  <symbol id="ricefort-mark" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 34H66V3M34 3l32 31M3 66l31-32v63M34 66h63M66 34v32l31-32M34 66l32 31M34 66l32-32"></path>
+      <path d="M43 34v23h23M52 34v14h14"></path>
+    </g>
+  </symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"></path></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 17v4h16v-4"></path></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6"></path></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"></rect><path d="M16 8V3H3v13h5"></path></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M6 17H3V8h18v9h-3M7 14h10v7H7zM17 11h1"></path></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M6 11H3v10h18V11h-3"></path></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"></path></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+</svg>
+
+<header class="rf-header">
+  <a class="rf-logo" href="index.html#home" aria-label="RiceFort 首頁"><img src="assets/ricefort-logo.png" alt="RiceFort 稻一"></a>
+  <nav class="rf-nav" aria-label="網站導覽">
+    <a href="index.html#home">首頁</a><a href="index.html#about">關於我們</a><a href="index.html#board">稻築板</a><a href="index.html#services">服務</a><a href="index.html#cases">應用案例</a><a href="furniture-custom.html" aria-current="page">傢俬訂製</a><a href="index.html#contact">聯絡我們</a>
+  </nav>
+  <details class="rf-mobile-nav"><summary aria-label="開啟網站導覽">選單 ☰</summary><nav aria-label="手機網站導覽"><a href="index.html#home">首頁</a><a href="index.html#about">關於我們</a><a href="index.html#board">稻築板</a><a href="index.html#services">服務</a><a href="index.html#cases">應用案例</a><a href="furniture-custom.html" aria-current="page">傢俬訂製</a><a href="index.html#contact">聯絡我們</a></nav></details>
+</header>
+<header class="header">
+  <button class="brand" data-page="1" aria-label="RiceFort，返回選款">
+    <span><span class="wordmark">傢俬訂製</span><small id="editionLabel">RICEFORT · MADE FOR YOUR SPACE</small></span>
+  </button>
+  <div class="header-actions">
+    <a class="website" href="https://ricefort.com/" target="_blank" rel="noopener noreferrer">返回官網 ↗</a>
+    <button class="btn" data-action="save" data-needs-design="">
+      <svg class="icon"><use href="#i-download"></use></svg>儲存設計
+    </button>
+    <details class="menu" id="more">
+      <summary class="btn">更多 <svg class="icon"><use href="#i-chevron"></use></svg></summary>
+      <div class="menu-panel">
+        
+        <button class="btn" data-action="import"><svg class="icon"><use href="#i-upload"></use></svg>載入設計 JSON</button>
+        <button class="btn" data-action="app"><svg class="icon"><use href="#i-download"></use></svg>下載此 App</button>
+
+        <hr>
+        <button class="btn" data-action="new"><svg class="icon"><use href="#i-plus"></use></svg>新建設計</button>
+      </div>
+    </details>
+  </div>
+</header>
+
+<div class="steps-wrap">
+  <nav class="steps" aria-label="設計步驟">
+    <button class="step" data-page="1" aria-current="step"><span class="step-number">01</span><span><strong>選擇款式</strong><small>FIND YOUR PIECE</small></span></button>
+    <button class="step" data-page="2"><span class="step-number">02</span><span><strong>訂造設計</strong><small>MAKE IT YOURS</small></span></button>
+    <button class="step customer-only" data-page="3"><span class="step-number">03</span><span><strong>確認及提交</strong><small>SEND YOUR REQUEST</small></span></button>
+    
+    
+  </nav>
+</div>
+
+<main>
+  <div id="runtimeError" class="error-box" role="alert" hidden=""></div>
+  <div id="printHeading"></div>
+
+  <section id="step1" aria-labelledby="title1">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">From rice husk. For your everyday.</p>
+        <h1 id="title1">讓傢俬，<br><em>剛好適合</em>你的空間。</h1>
+        <p>從一款家具開始，留下材料原本的質感。<br>選擇尺寸、配置與色彩，慢慢完成屬於你的設計。</p>
+      </div>
+      <div class="hero-stats">
+        <div><strong id="totalTemplates">180</strong><span>款設計範本</span></div>
+        <div><strong id="officeTemplates">42</strong><span>款辦公家具</span></div>
+        <div><strong>14</strong><span>格飾面參考</span></div>
+      </div>
+    </div>
+
+    <div class="card filter-card">
+      <div id="spaces" class="spaces" role="group" aria-label="使用空間"></div>
+      <div class="filter-row">
+        <div class="search-box">
+          <label class="sr-only" for="search">搜尋家具</label>
+          <svg class="icon"><use href="#i-search"></use></svg>
+          <input id="search" type="search" placeholder="搜尋衣櫃、工作枱、文件櫃……" autocomplete="off">
+        </div>
+        <div><label class="sr-only" for="category">家具分類</label><select id="category"></select></div>
+        <button class="btn quiet" data-action="clearFilters">清除篩選</button>
+      </div>
+      <div class="filter-meta"><span id="resultCount" aria-live="polite"></span><span>外尺寸：闊 × 高 × 深（cm）</span></div>
+    </div>
+
+    <div id="catalogue" class="catalogue" aria-label="家具設計範本"></div>
+    <nav id="pagination" class="pagination" aria-label="产品分頁"></nav>
+    <p class="note"><span class="customer-only">款式為可調整的設計範本，並非官網商品目錄。完成設定後，請下載設計確認檔交給 RiceFort 跟進正式報價。</span></p>
+  </section>
+
+  <section id="step2" aria-labelledby="title2" hidden="">
+    <div class="page-heading row between">
+      <div><p class="eyebrow">Make room for your everyday</p><h2 id="title2">剛剛好的尺寸，喜歡的顏色。</h2><p id="designSubtitle"></p></div>
+      <button class="btn quiet" data-page="1">← 更換款式</button>
+    </div>
+
+    <div class="workspace">
+      <div class="preview-column">
+        <div class="card preview-card">
+          <div class="preview-toolbar">
+            <h3>你的設計</h3>
+            <div class="row" style="gap:8px">
+              <div class="segmented" role="group" aria-label="預覽角度">
+                <button data-camera="iso" aria-pressed="true">3D</button>
+                <button data-camera="front" aria-pressed="false">正面</button>
+                <button data-camera="side" aria-pressed="false">側面</button>
+              </div>
+              <button class="btn small" data-action="png" data-needs-design="">PNG <svg class="icon"><use href="#i-download"></use></svg></button>
+            </div>
+          </div>
+          <div class="canvas-shell">
+            <canvas id="preview" tabindex="0" aria-label="家具三維示意。拖曳旋轉、滾動縮放；亦可用方向鍵與加減鍵操作。"></canvas>
+            <div id="previewPlaceholder" class="preview-placeholder" hidden="">請先修正設定，再查看更新後的設計。</div>
+            <span class="view-badge">RICEFORT · DESIGN PREVIEW</span>
+            <div class="zoom-tools">
+              <button class="btn icon-only small" data-action="zoomOut" aria-label="縮小"><svg class="icon"><use href="#i-minus"></use></svg></button>
+              <button class="btn icon-only small" data-action="zoomIn" aria-label="放大"><svg class="icon"><use href="#i-plus"></use></svg></button>
+              <button class="btn icon-only small" data-action="resetView" aria-label="還原預覽"><svg class="icon"><use href="#i-reset"></use></svg></button>
+            </div>
+          </div>
+          <div class="preview-caption"><span id="previewDimensions"></span><span>拖曳旋轉 · 滾動縮放</span></div>
+          <details class="inspection">
+            <summary>開門、櫃桶與拆件檢視</summary>
+            <label class="check-label"><input id="cutaway" type="checkbox">隱藏櫃門，查看內部配置</label>
+            <div class="inspect-grid">
+              <div><label for="opening">開門 / 拉出櫃桶 <span id="openingValue" class="muted">0%</span></label><input id="opening" type="range" min="0" max="100" value="0"></div>
+              <div><label for="explosion">拆件距離 <span id="explosionValue" class="muted">0%</span></label><input id="explosion" type="range" min="0" max="100" value="0"></div>
+            </div>
+          </details>
+          
+          
+        </div>
+        <p class="note preview-note">效果圖僅供設計參考，實際製作須由 RiceFort 確認。</p>
+      </div>
+
+      <form class="settings" id="settings" novalidate="">
+        <div id="errorSummary" class="error-box" role="status" aria-live="polite" hidden=""></div>
+
+        <details class="card setting" open="">
+          <summary><span class="section-num">01</span>尺寸</summary>
+          <div class="grid3">
+            <div class="field"><label for="f-w">闊度 · cm</label><input id="f-w" data-field="w" type="number" step="0.1" inputmode="decimal" aria-describedby="err-w"><small id="err-w" class="field-error" hidden=""></small></div>
+            <div class="field"><label for="f-h">高度 · cm</label><input id="f-h" data-field="h" type="number" step="0.1" inputmode="decimal" aria-describedby="err-h"><small id="err-h" class="field-error" hidden=""></small></div>
+            <div class="field"><label for="f-d">深度 · cm</label><input id="f-d" data-field="d" type="number" step="0.1" inputmode="decimal" aria-describedby="err-d"><small id="err-d" class="field-error" hidden=""></small></div>
+          </div>
+          <p class="note" id="sizeHint" style="margin-bottom:0"></p>
+        </details>
+
+        <details class="card setting finish-setting" open="">
+          <summary><span class="section-num">02</span>飾面與表面處理</summary>
+
+          <div class="standard-board">
+            <div class="row between"><strong>UV 原色稻殼板</strong><span class="tag">標準飾面</span></div>
+            <small>UV 原色為預設飾面；亦可選擇 Osmo 透明或調色油飾。</small>
+          </div>
+
+          <div class="field">
+            <label for="f-surface">選擇飾面方案</label>
+            <select id="f-surface" data-field="surface">
+              <option value="uv">UV 原色 · 標準方案</option>
+              <option value="osmoClear">Osmo 透明油飾 · 原色效果</option>
+              <option value="osmoColor">Osmo 調色油飾</option>
+            </select>
+            <small>選擇參考色 F02–F14，會自動切換至 Osmo 調色方案。</small>
+          </div>
+
+          <div id="swatches" class="swatches" role="group" aria-label="飾面參考色"></div>
+          <p id="finishName" class="finish-name"></p>
+          <p class="note">F01–F14 為 App 的預覽參考色，不是 Osmo 官方色號；實際色號、調色與稻殼板效果須以樣板確認。</p>
+
+          <div id="scopeField" class="field">
+            <label for="f-scope">油飾範圍</label>
+            <select id="f-scope" data-field="scope">
+              <option value="outer">外觀面 · 櫃內保持原廠</option>
+              <option value="all">外觀面 + 櫃內面</option>
+            </select>
+            <small>玻璃、五金及成品櫃腳不計入油飾面積。</small>
+          </div>
+
+          
+
+          
+
+          
+        </details>
+
+        <details id="caseControls" class="card setting">
+          <summary><span class="section-num">03</span>內部配置</summary>
+          <div id="frontField" class="field">
+            <label for="f-front">櫃門形式</label>
+            <select id="f-front" data-field="front"><option value="none">開放式 · 無門</option><option value="hinged">掩門</option><option value="sliding">趟門</option><option value="glass">玻璃掩門</option></select>
+            <small class="note">掩門向外開啟；趟門為雙片路軌門；玻璃掩門為有框玻璃門。門片、把手及路軌會即時反映在預覽。</small>
+          </div>
+          <div id="partitionFields" class="grid2">
+            <div class="field"><label for="f-columns">直向分隔板數</label><input id="f-columns" data-field="columns" type="number" min="0" max="9" step="1" aria-describedby="columnsHint err-columns"><small id="columnsHint" class="note">可選 0–9 塊；0 代表沒有直向分隔板，實際可用數目視乎家具闊度。</small><small id="err-columns" class="field-error" hidden=""></small></div>
+            <div class="field"><label for="f-partitionZone">分隔板位置</label><select id="f-partitionZone" data-field="partitionZone" aria-describedby="partitionZoneHint err-partitionZone"><option value="full">全高</option><option value="upper">上方</option><option value="lower">下方</option></select><small id="partitionZoneHint" class="note">選上方或下方時，系統會加入一塊水平分區板。</small><small id="err-partitionZone" class="field-error" hidden=""></small></div>
+            <div class="field" style="grid-column:1/-1"><label for="f-interiorLayout">分格內部配置</label><select id="f-interiorLayout" data-field="interiorLayout" aria-describedby="interiorLayoutHint err-interiorLayout"><option value="allShelves">全部分格都有層板</option><option value="leftShelves">只左邊分格有層板</option><option value="rightShelves">只右邊分格有層板</option><option value="allDrawers">全部分格為櫃桶</option></select><small id="interiorLayoutHint" class="note">左／右只代表最外側分格；其餘分格可保留作掛衣或開放空間。</small><small id="err-interiorLayout" class="field-error" hidden=""></small></div>
+            <div id="shelfCountField" class="field"><label for="f-shelves">所選分格層板數</label><input id="f-shelves" data-field="shelves" type="number" min="0" max="8" step="1" aria-describedby="err-shelves"><small id="err-shelves" class="field-error" hidden=""></small></div>
+            <div id="bayDrawerField" class="field" hidden=""><label for="f-bayDrawers">每格櫃桶數</label><input id="f-bayDrawers" data-field="bayDrawers" type="number" min="1" max="8" step="1" aria-describedby="bayDrawerHint err-bayDrawers"><small id="bayDrawerHint" class="note">全部分格會使用相同櫃桶數。</small><small id="err-bayDrawers" class="field-error" hidden=""></small></div>
+            <div id="shelfDistributionField" class="field"><label for="f-shelfDistribution">層板高度分配</label><select id="f-shelfDistribution" data-field="shelfDistribution"><option value="equal">平均分配</option><option value="custom">逐格設定淨高</option></select><small class="note">逐格高度由下至上輸入，並套用到所有有層板的分格。</small></div>
+            <div id="shelfHeightsField" class="height-editor" hidden=""><strong>每格層板淨空高度 · cm</strong><div id="shelfHeightInputs" class="height-inputs"></div><small id="shelfHeightTotal" class="height-total"></small><small id="err-shelfHeights" class="field-error" hidden=""></small></div>
+          </div>
+          <label class="check-label"><input id="f-back" data-field="back" type="checkbox">加入背板</label>
+          <label id="railField" class="check-label"><input id="f-rail" data-field="rail" type="checkbox"><span id="railLabelText">每格加入掛衣桿</span></label>
+          <small id="err-rail" class="field-error" hidden=""></small>
+          <div class="rule"></div>
+          <div id="bottomDrawerFields" class="grid2">
+            <div class="field"><label id="drawerLabel" for="f-drawers">底部櫃桶</label><input id="f-drawers" data-field="drawers" type="number" min="0" max="6" step="1" aria-describedby="err-drawers"><small id="err-drawers" class="field-error" hidden=""></small></div>
+            <div id="drawerHeightField" class="field"><label for="f-drawerH">每層高度 · cm</label><input id="f-drawerH" data-field="drawerH" type="number" min="10" max="30" step="0.1" aria-describedby="err-drawerH"><small id="err-drawerH" class="field-error" hidden=""></small></div>
+          </div>
+          <div id="drawerDistributionField" class="field"><label for="f-drawerDistribution">櫃桶高度分配</label><select id="f-drawerDistribution" data-field="drawerDistribution"><option value="equal">平均分配／等高</option><option value="custom">逐個設定高度</option></select><small class="note">自訂高度由下至上輸入；全部分格櫃桶會套用同一組高度。</small></div>
+          <div id="drawerHeightsField" class="height-editor" hidden=""><strong>每個櫃桶高度 · cm</strong><div id="drawerHeightInputs" class="height-inputs"></div><small id="drawerHeightTotal" class="height-total"></small><small id="err-drawerHeights" class="field-error" hidden=""></small></div>
+          <p id="drawerNote" class="note" style="margin-bottom:0"></p>
+        </details>
+
+        <details id="tableControls" class="card setting" hidden="">
+          <summary><span class="section-num">03</span>枱腳及承托</summary>
+          <div class="field"><label for="f-supportStyle">承托形式</label><select id="f-supportStyle" data-field="supportStyle"><option value="fourLeg">四腳承托</option><option value="uFrame">雙組 U 形金屬腳</option><option value="panel">雙側板式腳</option></select><small class="note">選項會即時更新預覽。</small><small id="err-supportStyle" class="field-error" hidden=""></small></div>
+        </details>
+
+        <details id="deskStorageControls" class="card setting" hidden="">
+          <summary><span class="section-num">03</span>側架書枱配置</summary>
+          <div class="grid2">
+            <div class="field"><label for="f-deskStorageSide">側架位置</label><select id="f-deskStorageSide" data-field="deskStorageSide"><option value="left">左邊</option><option value="right">右邊</option></select><small id="err-deskStorageSide" class="field-error" hidden=""></small></div>
+            <div class="field"><label for="f-deskStorageWidth">側架闊度 · cm</label><input id="f-deskStorageWidth" data-field="deskStorageWidth" type="number" min="25" max="60" step="0.1" aria-describedby="deskStorageWidthHint err-deskStorageWidth"><small id="deskStorageWidthHint" class="note"></small><small id="err-deskStorageWidth" class="field-error" hidden=""></small></div>
+            <div class="field"><label for="f-deskStorageMode">側架內部</label><select id="f-deskStorageMode" data-field="deskStorageMode"><option value="shelves">開放層板</option><option value="drawers">全部櫃桶</option></select><small id="err-deskStorageMode" class="field-error" hidden=""></small></div>
+            <div class="field"><label id="deskStorageCountLabel" for="f-deskStorageCount">分格數目</label><input id="f-deskStorageCount" data-field="deskStorageCount" type="number" min="1" max="6" step="1" aria-describedby="err-deskStorageCount"><small id="err-deskStorageCount" class="field-error" hidden=""></small></div>
+            <div class="field" style="grid-column:1/-1"><label for="f-deskStorageDistribution">高度分配</label><select id="f-deskStorageDistribution" data-field="deskStorageDistribution"><option value="equal">平均分配</option><option value="custom">逐格設定高度</option></select><small class="note">自訂高度由下至上輸入。</small><small id="err-deskStorageDistribution" class="field-error" hidden=""></small></div>
+            <div id="deskStorageHeightsField" class="height-editor" hidden=""><strong id="deskStorageHeightsTitle">每格淨空高度 · cm</strong><div id="deskHeightInputs" class="height-inputs"></div><small id="deskHeightTotal" class="height-total"></small><small id="err-deskStorageHeights" class="field-error" hidden=""></small></div>
+          </div>
+        </details>
+
+        <details id="metalShelfControls" class="card setting" hidden="">
+          <summary><span class="section-num">03</span>金屬柱層架配置</summary>
+          <div class="grid2">
+            <div class="field"><label for="f-metalShelfLevels">層板數目</label><input id="f-metalShelfLevels" data-field="metalShelfLevels" type="number" min="2" max="6" step="1" aria-describedby="err-metalShelfLevels"><small id="err-metalShelfLevels" class="field-error" hidden=""></small></div>
+            <div class="field"><label for="f-metalShelfDistribution">層高分配</label><select id="f-metalShelfDistribution" data-field="metalShelfDistribution"><option value="equal">平均分配</option><option value="custom">逐層設定淨高</option></select><small id="err-metalShelfDistribution" class="field-error" hidden=""></small></div>
+            <label class="check-label" style="grid-column:1/-1"><input id="f-metalShelfRails" data-field="metalShelfRails" type="checkbox">加入每層防跌護欄</label>
+            <div id="metalShelfHeightsField" class="height-editor" hidden=""><strong>每層淨空高度 · cm</strong><div id="metalHeightInputs" class="height-inputs"></div><small id="metalHeightTotal" class="height-total"></small><small id="err-metalShelfHeights" class="field-error" hidden=""></small></div>
+          </div>
+        </details>
+
+        <details id="baseControls" class="card setting">
+          <summary><span class="section-num">04</span>底部承托</summary>
+          <div class="field"><label for="f-base">底座形式</label><select id="f-base" data-field="base"><option value="legs">櫃腳</option><option value="plinth">封閉地腳</option><option value="none">平底 · 不加底座</option></select></div>
+          <div id="baseHeightField" class="field"><label for="f-baseH">底座高度 · cm</label><input id="f-baseH" data-field="baseH" type="number" min="3" max="20" step="0.1" aria-describedby="err-baseH"><small id="err-baseH" class="field-error" hidden=""></small></div>
+        </details>
+
+        <button type="button" class="btn reset-design" data-action="reset"><svg class="icon"><use href="#i-reset"></use></svg>還原此款預設配置</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="customerStep3" class="customer-only" aria-labelledby="titleCustomer3" hidden="">
+    <div class="page-heading row between">
+      <div><p class="eyebrow">Confirm &amp; request a quote</p><h2 id="titleCustomer3">確認設計，傳送報價要求。</h2><p>RiceFort 收到資料後，會覆核尺寸、結構及現場條件，再與你聯絡正式報價。</p></div>
+      <button class="btn quiet" data-page="2">← 返回調整</button>
+    </div>
+    <div class="request-layout">
+      <div class="card">
+        <h3>你的設計</h3>
+        <div class="quote-identity">
+          <div id="customerReviewThumb" class="quote-thumb"></div>
+          <div><h3 id="customerReviewName"></h3><p id="customerReviewDescription"></p></div>
+        </div>
+        <details class="summary-details" open=""><summary>設計確認摘要</summary><label for="customerSummaryText" class="sr-only">設計確認摘要</label><textarea id="customerSummaryText" readonly=""></textarea></details>
+        <p class="note" style="margin-bottom:0">本頁不顯示估價；RiceFort 會按確認資料另行報價。</p>
+      </div>
+      <div class="card">
+        <h3>聯絡及提交資料</h3>
+        <div id="requestErrors" class="error-box" role="status" aria-live="polite" hidden=""></div>
+        <div class="grid2">
+          <div class="field"><label for="customerProject">設計名稱</label><input id="customerProject" maxlength="100" placeholder="例如：新居睡房衣櫃" autocomplete="off"></div>
+          <div class="field"><label for="customerQuantity">需要數量</label><input id="customerQuantity" type="number" min="1" max="50" step="1" value="1" aria-describedby="err-customerQuantity"><small id="err-customerQuantity" class="field-error" hidden=""></small></div>
+          <div class="field"><label for="requestName">姓名</label><input id="requestName" maxlength="80" autocomplete="name" aria-describedby="err-requestName"><small id="err-requestName" class="field-error" hidden=""></small></div>
+          <div class="field"><label for="requestContact">電話或電郵</label><input id="requestContact" maxlength="120" autocomplete="email" aria-describedby="err-requestContact"><small id="err-requestContact" class="field-error" hidden=""></small></div>
+          <div class="field"><label for="requestMethod">希望聯絡方式</label><select id="requestMethod"><option value="WhatsApp">WhatsApp</option><option value="電話">電話</option><option value="電郵">電郵</option></select></div>
+          <div class="field"><label for="requestNotes">其他要求</label><textarea id="requestNotes" maxlength="1000" placeholder="例如：希望上門度尺、預計完成日期……"></textarea></div>
+        </div>
+        <div class="request-confirm"><label class="check-label"><input id="requestConsent" type="checkbox" aria-describedby="err-requestConsent"><span>我已核對設計資料，並同意 RiceFort 按以上聯絡方式跟進報價。</span></label><small id="err-requestConsent" class="field-error" hidden=""></small></div>
+        <div id="customerRequestStatus" class="request-status" hidden=""></div>
+        <div class="request-actions">
+          <button class="btn primary" data-action="sendRequest" data-needs-design=""><svg class="icon"><use href="#i-share"></use></svg>傳送報價要求</button>
+          <button class="btn" data-action="save" data-needs-design=""><svg class="icon"><use href="#i-download"></use></svg>下載設計檔</button>
+          <button class="btn" data-action="copyCustomerRequest" data-needs-design=""><svg class="icon"><use href="#i-copy"></use></svg>複製要求摘要</button>
+        </div>
+        <p class="note" style="margin:14px 0 0">「傳送報價要求」會開啟手機或電腦的分享功能，讓你選擇 WhatsApp、電郵或其他方式傳送給 RiceFort；如瀏覽器不支援，App 會下載設計檔並複製摘要。</p>
+      </div>
+    </div>
+  </section>
+
+  
+</main>
+
+<footer class="footer"><span>RiceFort · 稻一傢俬設計室</span><span id="saveStatus" role="status">更改後會自動暫存在本機</span></footer>
+
+<div class="dock">
+  <div class="dock-inner">
+    <button id="previous" class="btn quiet" data-action="previous" disabled="">← 上一步</button>
+    <div class="dock-product"><small>目前選擇</small><strong id="dockName"></strong><span id="dockDetails"></span></div>
+    
+    <button id="next" class="btn primary" data-action="next">開始訂造 →</button>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite" hidden=""></div>
+<input id="fileInput" type="file" accept=".json,application/json" hidden="">
+
+
+
+<dialog id="confirmDialog">
+  <form method="dialog">
+    <h3 id="confirmTitle"></h3><p id="confirmText"></p>
+    <div class="dialog-actions"><button class="btn" value="cancel">取消</button><button class="btn primary" value="ok">確認</button></div>
+  </form>
+</dialog>
+<dialog id="copyDialog">
+  <form method="dialog">
+    <h3>複製設計摘要</h3><p>瀏覽器未開放自動複製，請手動複製以下內容。</p>
+    <label class="sr-only" for="manualCopy">設計摘要</label><textarea id="manualCopy" readonly=""></textarea>
+    <div class="dialog-actions"><button type="button" class="btn" data-action="selectCopy">選取全部</button><button class="btn primary">完成</button></div>
+  </form>
+</dialog>
+
+
+<script src="furniture-submit.js"></script>
+<script>
+(() => {
+"use strict";
+const APP_EDITION="customer";
+const IS_CUSTOMER=APP_EDITION==="customer";
+const MAX_PAGE=IS_CUSTOMER?3:4;
+const APP_HTML = "<!doctype html>\n" + document.documentElement.outerHTML;
+const $ = id => document.getElementById(id);
+const $$ = (selector,root=document) => Array.from(root.querySelectorAll(selector));
+const own = (obj,key) => Object.prototype.hasOwnProperty.call(obj,key);
+const esc = value => String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+const clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
+const round=(n,d=1)=>Number(n.toFixed(d));
+const fmt=(n,d=1)=>Number.isFinite(n)?n.toLocaleString("en-HK",{maximumFractionDigits:d}):"—";
+const STORE=IS_CUSTOMER?"ricefort.studio.customer.v2":"ricefort.studio.complete.v4";
+const LEGACY_STORES=IS_CUSTOMER?["ricefort.studio.customer.v1"]:["ricefort.studio.complete.v3","ricefort.studio.complete.v2","ricefort.studio.complete.v1"];
+const PAGE_SIZE=15, T=1.8;
+const ALL_FACES=[0,1,2,3,4,5];
+const runtimeLog=[];
+
+const FINISHES=[
+  ["F01","稻殼原色","#dfd3b6"],["F02","暖米白","#e6e1d3"],
+  ["F03","亞麻白","#eeede4"],["F04","燕麥米","#cbbd9d"],
+  ["F05","淺橡木色","#c6a77f"],["F06","蜂蜜木色","#aa835c"],
+  ["F07","胡桃啡","#785b47"],["F08","煙燻木色","#665b51"],
+  ["F09","鼠尾草","#a7b297"],["F10","森林綠","#506c55"],
+  ["F11","霧灰綠","#bbc7b9"],["F12","石板灰","#989b92"],
+  ["F13","暖陶土","#b17f69"],["F14","炭黑","#484e46"]
+].map(([id,name,color])=>({id,name,color}));
+const FINISH_MAP=new Map(FINISHES.map(f=>[f.id,f]));
+const SURFACES={uv:"UV 原色標準方案",osmoClear:"Osmo 透明油飾",osmoColor:"Osmo 調色油飾"};
+const FRONTS={none:"開放式",hinged:"掩門",sliding:"趟門",glass:"玻璃掩門"};
+const PARTITION_ZONES={full:"全高",upper:"上方",lower:"下方"};
+const INTERIOR_LAYOUTS={
+  allShelves:"全部分格都有層板",
+  leftShelves:"只左邊分格有層板",
+  rightShelves:"只右邊分格有層板",
+  allDrawers:"全部分格為櫃桶"
+};
+const DISTRIBUTION_MODES={equal:"平均分配",custom:"逐格自訂高度"};
+const SUPPORT_STYLES={fourLeg:"四腳承托",uFrame:"雙組 U 形金屬腳",panel:"雙側板式腳"};
+const DESK_STORAGE_MODES={shelves:"開放層板",drawers:"全部櫃桶"};
+function namedDoorCount(p){
+  const match=p.name.match(/([單雙三四])(?:趟)?門/);
+  return match?({單:1,雙:2,三:3,四:4}[match[1]]||null):null;
+}
+const BASES={legs:"成品櫃腳",plinth:"封閉地腳",none:"平底"};
+const SCOPES={outer:"外觀面，櫃內保持原廠",all:"外觀面 + 櫃內面"};
+const MATERIALS={board:"板件",back:"背板",glass:"玻璃",metal:"五金示意",support:"成品承托件"};
+const CATALOGUE=[];
+function group(area,category,type,rows){
+  rows.forEach(([name,w,h,d,options={}])=>CATALOGUE.push({
+    id:"RF-"+String(CATALOGUE.length+1).padStart(3,"0"),
+    name,area,category,type,w,h,d,...options
+  }));
+}
+
+/* Order and IDs retained from version 1. */
+group("臥室","衣櫃","cabinet",[
+  ["單門衣櫃",60,195,58,{shelves:1,rail:true}],
+  ["雙門衣櫃",100,210,60,{columns:2,shelves:1,rail:true}],
+  ["雙趟門衣櫃",140,210,62,{front:"sliding",columns:2,shelves:1,rail:true}],
+  ["開放式衣櫃",100,195,55,{front:"none",columns:2,shelves:1,rail:true}],
+  ["兒童雙門衣櫃",80,150,50,{columns:2,shelves:1,rail:true}],
+  ["雙門三櫃桶衣櫃",120,220,60,{columns:2,shelves:1,drawers:3,rail:true}],
+  ["長褸衣櫃",80,220,60,{shelves:0,rail:true}],
+  ["摺衫收納衣櫃",90,200,55,{columns:2,shelves:4}],
+  ["衣帽架",80,175,48,{type:"shelf",front:"none",back:false,shelves:1,rail:true}],
+  ["玄關掛衣連鞋櫃",100,200,52,{front:"none",shelves:1,rail:true}]
+]);
+group("書房","書櫃","shelf",[
+  ["高身書櫃",80,190,32,{shelves:5}],
+  ["窄身書架",40,180,30,{shelves:5}],
+  ["矮身書櫃",90,100,32,{shelves:2}],
+  ["玻璃門書櫃",90,180,35,{front:"glass",back:true,shelves:4}],
+  ["趟門書櫃",110,180,40,{front:"sliding",back:true,columns:2,shelves:4}],
+  ["六格書架",120,120,32,{columns:3,shelves:1}],
+  ["雙列書櫃",120,200,35,{columns:2,shelves:5}],
+  ["桌邊書架",60,75,30,{shelves:1}],
+  ["九格書櫃",120,135,35,{columns:3,shelves:2}],
+  ["矮身展示書架",120,85,32,{columns:2,shelves:1}]
+]);
+group("客廳","電視櫃","cabinet",[
+  ["簡約電視櫃",140,50,40,{shelves:0,columns:2}],
+  ["加長電視櫃",180,50,42,{shelves:0,columns:3}],
+  ["小戶型電視櫃",100,48,35,{shelves:0}],
+  ["開放式影音櫃",160,60,45,{front:"none",columns:2,shelves:1}],
+  ["趟門影音櫃",180,65,45,{front:"sliding",columns:2,shelves:1}]
+]);
+group("客廳","茶几邊几","table",[
+  ["長方形茶几",110,42,55],["小型茶几",80,40,45],
+  ["方形茶几",70,42,70],["沙發邊几",45,55,45],["窄身邊几",70,58,30]
+]);
+group("客廳","收納展示","cabinet",[
+  ["客廳展示櫃",90,180,38,{front:"glass",shelves:4}],
+  ["雙門矮櫃",100,85,40,{shelves:1}],
+  ["三櫃桶收納櫃",80,90,45,{type:"chest",drawers:3}],
+  ["加闊收納櫃",160,90,42,{columns:3,shelves:1}],
+  ["開放展示矮櫃",120,90,35,{front:"none",columns:3,shelves:1}]
+]);
+group("玄關","鞋櫃","cabinet",[
+  ["雙門鞋櫃",80,110,35,{shelves:4}],
+  ["窄身鞋櫃",50,150,32,{shelves:5}],
+  ["加闊鞋櫃",120,110,35,{columns:2,shelves:4}],
+  ["高身鞋櫃",90,190,38,{columns:2,shelves:6}],
+  ["趟門鞋櫃",120,120,38,{front:"sliding",columns:2,shelves:4}]
+]);
+group("玄關","換鞋凳","bench",[
+  ["雙人換鞋凳",100,43,35],["單人換鞋凳",55,43,35],["加長換鞋凳",140,43,38]
+]);
+group("玄關","玄關置物","shelf",[
+  ["玄關置物架",80,100,30,{shelves:2}],["窄身玄關架",45,160,28,{shelves:4}]
+]);
+group("飯廳","餐枱","table",[
+  ["四人餐枱",120,75,75],["六人餐枱",160,75,80],
+  ["八人餐枱",200,75,90],["小型餐枱",80,74,70],
+  ["窄身餐枱",140,75,65],["高身餐枱",120,100,60]
+]);
+group("飯廳","餐邊櫃","cabinet",[
+  ["雙門餐邊櫃",100,85,40,{shelves:1}],
+  ["加闊餐邊櫃",160,90,45,{columns:3,shelves:1}],
+  ["玻璃門餐邊櫃",120,120,40,{front:"glass",columns:2,shelves:2}],
+  ["開放餐具櫃",90,160,35,{front:"none",shelves:4}]
+]);
+group("廚房","廚房收納","cabinet",[
+  ["雙門儲物地櫃",80,85,55,{shelves:1}],
+  ["窄身儲物地櫃",40,85,50,{shelves:1}],
+  ["加闊儲物地櫃",120,85,55,{columns:2,shelves:1}],
+  ["高身食物儲存櫃",60,190,45,{shelves:5}],
+  ["三櫃桶廚房收納櫃",60,85,50,{type:"chest",drawers:3}],
+  ["小型餐具櫃",60,65,35,{shelves:1}]
+]);
+group("廚房","開放層架","shelf",[
+  ["廚房置物架",80,150,40,{shelves:3}],
+  ["窄身食材架",40,170,35,{shelves:4}],
+  ["電器置物架",80,100,50,{shelves:1}],
+  ["矮身廚房層架",100,85,40,{columns:2,shelves:1}]
+]);
+group("兒童空間","兒童收納","cabinet",[
+  ["兒童收納櫃",80,110,40,{shelves:2}],
+  ["玩具儲物櫃",100,75,40,{front:"none",columns:2,shelves:1}],
+  ["兒童三櫃桶櫃",60,80,40,{type:"chest",drawers:3}],
+  ["雙門玩具櫃",90,100,40,{columns:2,shelves:2}]
+]);
+group("兒童空間","兒童書架","shelf",[
+  ["兒童矮書架",80,80,30,{shelves:2}],
+  ["六格玩具架",90,90,35,{columns:3,shelves:1}],
+  ["窄身兒童書架",45,120,30,{shelves:3}]
+]);
+group("兒童空間","兒童書枱","table",[
+  ["兒童學習枱",100,60,55],["幼童活動枱",80,50,50],["雙人兒童書枱",160,65,55]
+]);
+group("浴室","浴室收納","cabinet",[
+  ["浴室高身櫃",45,170,30,{shelves:4}],
+  ["窄身浴室櫃",35,160,28,{shelves:4}],
+  ["雙門毛巾櫃",70,120,35,{shelves:3}],
+  ["浴室矮櫃",70,80,35,{shelves:1}],
+  ["開放毛巾架",60,140,30,{front:"none",shelves:3}],
+  ["小型浴室收納櫃",45,70,30,{shelves:1}],
+  ["加闊浴室收納櫃",100,85,35,{columns:2,shelves:1}],
+  ["浴室上置收納櫃",70,60,25,{base:"none",shelves:1}],
+  ["開放浴室小架",45,50,25,{front:"none",base:"none",shelves:1}],
+  ["玻璃門毛巾櫃",60,150,35,{front:"glass",shelves:3}]
+]);
+group("家務空間","家務層架","shelf",[
+  ["家務置物架",90,180,40,{shelves:4}],
+  ["加闊家務架",150,180,45,{columns:3,shelves:4}],
+  ["窄身雜物架",45,180,35,{shelves:4}],
+  ["低身雜物架",100,90,40,{columns:2,shelves:1}],
+  ["收納箱層架",120,160,50,{columns:2,shelves:2}],
+  ["小型家務架",60,120,35,{shelves:2}]
+]);
+group("家務空間","家務儲物櫃","cabinet",[
+  ["清潔用品高櫃",60,180,40,{shelves:3}],
+  ["雙門雜物櫃",100,180,45,{columns:2,shelves:4}],
+  ["窄身家務櫃",40,170,35,{shelves:4}],
+  ["加闊雜物矮櫃",120,90,45,{columns:2,shelves:1}]
+]);
+group("桌面小物","桌面收納","box",[
+  ["桌面小書架",45,35,22,{shelves:0}],
+  ["雙格桌面書架",60,35,22,{columns:2,shelves:0}],
+  ["三格文具架",45,25,20,{columns:3,shelves:0}],
+  ["六格桌面架",60,40,22,{columns:3,shelves:1}],
+  ["信件分類架",35,30,25,{shelves:2}],
+  ["桌上文件架",40,35,30,{shelves:2}],
+  ["窄身桌面架",25,45,20,{shelves:2}],
+  ["加闊桌面層架",80,40,25,{columns:2,shelves:1}],
+  ["小型展示盒",30,30,20,{shelves:0}],
+  ["雙層展示架",40,45,22,{shelves:1}],
+  ["收藏展示架",60,60,25,{columns:2,shelves:2}],
+  ["桌面儲物盒",35,25,25,{front:"hinged",shelves:0}],
+  ["玻璃門展示盒",45,50,25,{front:"glass",shelves:1}],
+  ["迷你開放架",20,25,15,{shelves:1}],
+  ["桌邊文件收納架",45,60,30,{shelves:2}]
+]);
+group("辦公室","工作枱","table",[
+  ["標準辦公枱",120,74,60],["加闊辦公枱",150,74,70],
+  ["行政工作枱",180,75,80],["窄身工作枱",100,74,45],
+  ["雙人工作枱",200,74,60],["三人長工作枱",270,74,70],
+  ["站立工作枱",120,105,60],["吧檯式工作枱",150,105,60],
+  ["簡約電腦枱",100,74,60],["設計師工作枱",160,75,80],
+  ["會客工作枱",140,75,65],["主管工作枱",180,75,75],
+  ["小型工作枱",90,74,55],["共享工作枱",240,74,80]
+]);
+group("辦公室","會議枱","table",[
+  ["四人會議枱",160,75,90],["六人會議枱",200,75,100],
+  ["八人會議枱",240,75,110],["十人會議枱",300,75,120],
+  ["小組討論枱",120,75,75],["高身討論枱",180,105,80]
+]);
+group("辦公室","文件櫃","cabinet",[
+  ["雙門文件櫃",90,180,40,{shelves:4}],
+  ["矮身文件櫃",90,100,40,{shelves:2}],
+  ["玻璃門文件櫃",90,180,40,{front:"glass",shelves:4}],
+  ["趟門文件櫃",120,180,42,{front:"sliding",columns:2,shelves:4}],
+  ["窄身文件櫃",45,180,40,{shelves:4}],
+  ["橫向文件櫃",160,90,40,{columns:2,shelves:1}],
+  ["三櫃桶文件櫃",45,80,50,{type:"chest",drawers:3}],
+  ["四櫃桶文件櫃",45,105,50,{type:"chest",drawers:4}],
+  ["文具儲物櫃",80,120,38,{shelves:3}],
+  ["樣本儲物櫃",120,160,45,{columns:2,shelves:4}]
+]);
+group("辦公室","辦公層架","shelf",[
+  ["開放文件架",90,180,35,{shelves:4}],
+  ["加闊文件架",120,180,35,{columns:2,shelves:4}],
+  ["桌邊收納架",60,70,35,{shelves:1}],
+  ["打印機架",80,50,60,{shelves:1}],
+  ["低身打印機架",100,60,45,{shelves:1}],
+  ["展示層架",120,180,35,{columns:2,shelves:4}],
+  ["文件分格架",120,120,35,{columns:3,shelves:2}],
+  ["辦公茶水架",120,90,35,{columns:3,shelves:1}],
+  ["窄身開放架",45,180,30,{shelves:4}],
+  ["辦公室置物架",150,180,40,{columns:3,shelves:4}]
+]);
+
+/* New multi-purpose designs informed by the supplied references and current home/office categories. */
+group("書房","側架書枱","deskStorage",[
+  ["左側雙格收納書枱",120,75,55,{side:"left",cubbies:2}],
+  ["右側雙格收納書枱",120,75,55,{side:"right",cubbies:2}],
+  ["加闊側架工作枱",150,75,65,{side:"left",cubbies:3}]
+]);
+group("兒童空間","側架書枱","deskStorage",[
+  ["兒童側架學習枱",110,65,55,{side:"right",cubbies:2}]
+]);
+group("家務空間","金屬框層架","metalShelf",[
+  ["三層金屬柱置物架",90,95,38,{levels:3}],
+  ["四層金屬柱置物架",90,140,40,{levels:4}],
+  ["窄身金屬柱層架",45,120,35,{levels:4}],
+  ["加闊金屬框收納架",120,110,45,{levels:3}]
+]);
+group("客廳","多用途收納","shelf",[
+  ["窄身梳化後置物架",140,75,30,{columns:3,shelves:1,back:false}],
+  ["雙面空間分隔層架",120,180,35,{columns:3,shelves:4,back:false}],
+  ["影音設備高架",100,120,45,{columns:2,shelves:2,back:false}],
+  ["窗台開放收納矮櫃",150,55,45,{columns:3,shelves:0,back:false}]
+]);
+group("臥室","床邊及梳妝","cabinet",[
+  ["掛牆開放床頭櫃",45,35,30,{front:"none",base:"none",shelves:0}],
+  ["床尾三格收納矮櫃",140,55,45,{front:"none",base:"none",columns:3,shelves:0}],
+  ["開放衣帽分區架",120,190,50,{type:"shelf",front:"none",columns:2,shelves:3,rail:true,back:false}]
+]);
+group("臥室","梳妝枱","deskStorage",[
+  ["梳妝枱連側置物架",110,75,45,{side:"right",cubbies:2}]
+]);
+group("飯廳","用餐及咖啡角","table",[
+  ["餐廳中島工作枱",120,90,65]
+]);
+group("飯廳","用餐及咖啡角","cabinet",[
+  ["餐枱旁窄身收納櫃",100,90,30,{columns:2,shelves:2}],
+  ["咖啡角電器收納櫃",90,130,45,{front:"none",shelves:3}],
+  ["酒杯展示層架",90,150,35,{type:"shelf",front:"none",columns:2,shelves:4,back:false}]
+]);
+group("玄關","多功能玄關收納","shelf",[
+  ["雙面玄關間隔架",100,180,32,{columns:2,shelves:4,back:false}]
+]);
+group("玄關","多功能玄關收納","cabinet",[
+  ["兩格收納換鞋凳",90,45,35,{front:"none",base:"none",columns:2,shelves:0,back:false}],
+  ["掛牆鎖匙展示櫃",70,60,20,{front:"glass",base:"none",columns:2,shelves:1}]
+]);
+group("廚房","多功能廚房家具","deskStorage",[
+  ["側架廚房中島枱",130,90,65,{side:"left",cubbies:2}]
+]);
+group("廚房","多功能廚房家具","cabinet",[
+  ["微波爐連電器高櫃",80,170,50,{front:"none",shelves:4}]
+]);
+group("廚房","多功能廚房家具","metalShelf",[
+  ["三層蔬果金屬柱架",60,80,40,{levels:3}]
+]);
+group("浴室","浴室補充收納","cabinet",[
+  ["洗手盆側收納櫃",35,90,30,{shelves:2}]
+]);
+group("浴室","浴室補充收納","metalShelf",[
+  ["浴室三層金屬柱架",50,90,30,{levels:3}]
+]);
+group("辦公室","整合式工作家具","deskStorage",[
+  ["辦公設備側架工作枱",150,75,65,{side:"right",cubbies:3}]
+]);
+group("辦公室","整合式工作家具","metalShelf",[
+  ["金屬框打印機層架",80,95,55,{levels:3}]
+]);
+
+const PRODUCTS=new Map(CATALOGUE.map(p=>[p.id,p]));
+const isTable=p=>["table","bench","deskStorage","metalShelf"].includes(p.type);
+function defaults(p){
+  const table=isTable(p),chest=p.type==="chest",box=p.type==="box";
+  const base=p.base??(box?"none":"legs"),baseH=p.baseH??6;
+  const available=p.h-(base==="none"?0:baseH)-2*T;
+  return {
+    w:p.w,h:p.h,d:p.d,
+    columns:table||chest?1:(p.columns??(p.w>110?2:1)),
+    partitionZone:"full",
+    interiorLayout:"allShelves",
+    shelves:table||chest?0:(p.shelves??clamp(Math.floor(available/38)-1,0,5)),
+    shelfDistribution:"equal",shelfHeights:[],
+    bayDrawers:3,
+    drawers:table?0:(p.drawers??(chest?3:0)),
+    drawerH:18,drawerDistribution:"equal",drawerHeights:[],
+    front:table||chest?"none":(p.front??(p.type==="cabinet"?"hinged":"none")),
+    back:table?false:(p.back??p.type!=="shelf"),
+    rail:table||chest?false:!!p.rail,
+    supportStyle:p.supportStyle??"fourLeg",
+    deskStorageSide:p.side??"left",
+    deskStorageWidth:round(clamp(p.w*.3,30,48),1),
+    deskStorageMode:"shelves",
+    deskStorageCount:p.cubbies??2,
+    deskStorageDistribution:"equal",deskStorageHeights:[],
+    metalShelfLevels:p.levels??3,
+    metalShelfDistribution:"equal",metalShelfHeights:[],metalShelfRails:true,
+    base,baseH,finish:"F01",surface:"uv",scope:"outer"
+  };
+}
+function initialState(){
+  return {productId:"RF-002",cfg:defaults(PRODUCTS.get("RF-002")),
+    project:"",quantity:1,page:1,request:defaultRequest()};
+}
+function defaultRequest(){return {name:"",contact:"",method:"WhatsApp",notes:"",consent:false,confirmedAt:""};}
+function bounds(p){
+  if(p.type==="bench")return {w:[40,220],h:[30,65],d:[25,80]};
+  if(p.type==="deskStorage")return {w:[80,220],h:[60,110],d:[40,90]};
+  if(p.type==="metalShelf")return {w:[30,220],h:[40,220],d:[20,80]};
+  if(p.type==="table")return {w:[40,320],h:[35,115],d:[30,150]};
+  if(p.type==="box")return {w:[15,120],h:[10,100],d:[10,60]};
+  return {w:[30,300],h:[30,260],d:[20,100]};
+}
+const NUMBER_FIELDS=["w","h","d","columns","shelves","bayDrawers","drawers","drawerH","baseH","deskStorageWidth","deskStorageCount","metalShelfLevels"];
+const STRING_FIELDS=["front","base","finish","surface","scope","partitionZone","interiorLayout","shelfDistribution","drawerDistribution","supportStyle","deskStorageSide","deskStorageMode","deskStorageDistribution","metalShelfDistribution"];
+const BOOL_FIELDS=["back","rail","metalShelfRails"];
+const ARRAY_FIELDS=["shelfHeights","drawerHeights","deskStorageHeights","metalShelfHeights"];
+const CONFIG_FIELDS=[...NUMBER_FIELDS,...STRING_FIELDS,...BOOL_FIELDS,...ARRAY_FIELDS];
+const sumHeights=values=>values.reduce((sum,value)=>sum+value,0);
+function drawerCount(c,p){return p.type==="chest"?c.drawers:c.interiorLayout==="allDrawers"?c.bayDrawers:c.drawers;}
+function resolvedDrawerHeights(c,p){
+  const count=drawerCount(c,p),B=c.base==="none"?0:c.baseH,innerH=c.h-B-2*T;
+  if(!Number.isInteger(count)||count<=0)return [];
+  if(c.drawerDistribution==="custom"&&Array.isArray(c.drawerHeights)&&c.drawerHeights.length===count&&c.drawerHeights.every(Number.isFinite))return [...c.drawerHeights];
+  const height=p.type==="chest"||c.interiorLayout==="allDrawers"?innerH/count:c.drawerH;
+  return Array(count).fill(height);
+}
+function layoutMetrics(c,p){
+  const B=c.base==="none"?0:c.baseH,innerH=c.h-B-2*T;
+  const allDrawers=p.type!=="chest"&&c.interiorLayout==="allDrawers";
+  const drawerHeights=resolvedDrawerHeights(c,p);
+  const stack=p.type==="chest"?innerH:allDrawers?0:sumHeights(drawerHeights);
+  const upper=innerH-stack;
+  const partial=c.columns>1&&!allDrawers&&c.partitionZone!=="full";
+  const zoneH=partial?(upper-T)/2:upper;
+  const shelfClear=zoneH-c.shelves*T;
+  return {B,innerH,allDrawers,drawerHeights,stack,upper,partial,zoneH,shelfClear};
+}
+function resolvedShelfHeights(c,p){
+  const count=c.shelves+1,m=layoutMetrics(c,p),equal=count>0?m.shelfClear/count:0;
+  if(!Number.isInteger(count)||count<=0)return [];
+  if(c.shelfDistribution==="custom"&&Array.isArray(c.shelfHeights)&&c.shelfHeights.length===count&&c.shelfHeights.every(Number.isFinite))return [...c.shelfHeights];
+  return Array(count).fill(equal);
+}
+function balancedHeights(total,count){
+  if(count<=0)return [];
+  const value=round(total/count,1),values=Array(count).fill(value);
+  values[count-1]=round(total-value*(count-1),1);return values;
+}
+function equalShelfHeights(c,p){const m=layoutMetrics({...c,shelfDistribution:"equal"},p);return balancedHeights(m.shelfClear,c.shelves+1);}
+function equalDrawerHeights(c,p){
+  const count=drawerCount(c,p),m=layoutMetrics({...c,drawerDistribution:"equal"},p);
+  return p.type==="chest"||c.interiorLayout==="allDrawers"?balancedHeights(m.innerH,count):Array(count).fill(round(c.drawerH,1));
+}
+function deskStorageClearHeight(c){return c.deskStorageMode==="drawers"?c.h-2*T:c.h-(c.deskStorageCount+1)*T;}
+function resolvedDeskStorageHeights(c){
+  const count=c.deskStorageCount,total=deskStorageClearHeight(c);
+  if(!Number.isInteger(count)||count<=0)return [];
+  if(c.deskStorageDistribution==="custom"&&Array.isArray(c.deskStorageHeights)&&c.deskStorageHeights.length===count&&c.deskStorageHeights.every(Number.isFinite))return [...c.deskStorageHeights];
+  return Array(count).fill(total/count);
+}
+function equalDeskStorageHeights(c){return balancedHeights(deskStorageClearHeight(c),c.deskStorageCount);}
+function metalShelfClearHeight(c){return c.h-c.metalShelfLevels*T;}
+function resolvedMetalShelfHeights(c){
+  const count=c.metalShelfLevels-1,total=metalShelfClearHeight(c);
+  if(!Number.isInteger(count)||count<=0)return [];
+  if(c.metalShelfDistribution==="custom"&&Array.isArray(c.metalShelfHeights)&&c.metalShelfHeights.length===count&&c.metalShelfHeights.every(Number.isFinite))return [...c.metalShelfHeights];
+  return Array(count).fill(total/count);
+}
+function equalMetalShelfHeights(c){return balancedHeights(metalShelfClearHeight(c),c.metalShelfLevels-1);}
+function cloneConfig(c){
+  const copy={...c};
+  for(const key of ARRAY_FIELDS)copy[key]=[...(c[key]||[])];
+  return copy;
+}
+
+function validate(c,p){
+  const e={},b=bounds(p),names={w:"闊度",h:"高度",d:"深度"};
+  for(const k of ["w","h","d"])
+    if(!Number.isFinite(c[k])||c[k]<b[k][0]||c[k]>b[k][1])
+      e[k]=`${names[k]}須為 ${b[k][0]}–${b[k][1]} cm。`;
+  if(!Number.isInteger(c.columns)||c.columns<1||c.columns>10)
+    e.columns="直向分隔板數須為 0–9 的整數。";
+  for(const [k,min,max,label] of [
+    ["shelves",0,8,"層板"],["bayDrawers",1,8,"每格櫃桶"],["drawers",p.type==="chest"?1:0,6,"櫃桶"]
+  ])if(!Number.isInteger(c[k])||c[k]<min||c[k]>max)e[k]=`${label}數目須為 ${min}–${max} 的整數。`;
+  if(!own(FRONTS,c.front))e.front="請選擇有效櫃門形式。";
+  if(!own(PARTITION_ZONES,c.partitionZone))e.partitionZone="請選擇分隔板位置。";
+  if(!own(INTERIOR_LAYOUTS,c.interiorLayout))e.interiorLayout="請選擇有效分格內部配置。";
+  if(!own(DISTRIBUTION_MODES,c.shelfDistribution))e.shelfDistribution="請選擇層板高度分配方式。";
+  if(!own(DISTRIBUTION_MODES,c.drawerDistribution))e.drawerDistribution="請選擇櫃桶高度分配方式。";
+  if(!own(SUPPORT_STYLES,c.supportStyle))e.supportStyle="請選擇有效承托形式。";
+  if(!["left","right"].includes(c.deskStorageSide))e.deskStorageSide="請選擇側架位置。";
+  if(!own(DESK_STORAGE_MODES,c.deskStorageMode))e.deskStorageMode="請選擇側架內部配置。";
+  if(!own(DISTRIBUTION_MODES,c.deskStorageDistribution))e.deskStorageDistribution="請選擇側架高度分配方式。";
+  if(!own(DISTRIBUTION_MODES,c.metalShelfDistribution))e.metalShelfDistribution="請選擇金屬層架高度分配方式。";
+  for(const key of ARRAY_FIELDS)if(!Array.isArray(c[key])||c[key].some(value=>typeof value!=="number"||!Number.isFinite(value)))e[key]="自訂高度格式不正確。";
+  if(!own(BASES,c.base))e.base="請選擇有效底座。";
+  if(!own(SURFACES,c.surface))e.surface="請選擇有效飾面方案。";
+  if(!own(SCOPES,c.scope))e.scope="請選擇有效油飾範圍。";
+  if(!FINISH_MAP.has(c.finish))e.finish="請選擇有效參考色。";
+  if(c.surface!=="osmoColor"&&c.finish!=="F01")e.surface="有色方案請選擇 Osmo 調色油飾。";
+  if(c.surface==="osmoColor"&&c.finish==="F01")e.surface="原色請選擇 UV 或 Osmo 透明方案。";
+  if(!Number.isFinite(c.baseH)||c.baseH<3||c.baseH>20)e.baseH="底座高度須為 3–20 cm。";
+  if(!Number.isFinite(c.drawerH)||c.drawerH<10||c.drawerH>30)e.drawerH="櫃桶每層高度須為 10–30 cm。";
+  if(typeof c.back!=="boolean"||typeof c.rail!=="boolean"||typeof c.metalShelfRails!=="boolean")e.h="內部設定格式不正確。";
+  if(Object.keys(e).length)return e;
+  if(p.type==="deskStorage"){
+    const maxWidth=Math.min(60,c.w-40),minGap=c.deskStorageMode==="drawers"?10:8,total=deskStorageClearHeight(c);
+    if(c.front!=="none"||c.drawers!==0||c.shelves!==0||c.rail||c.back)e.front="側架書枱使用專用配置。";
+    if(!Number.isFinite(c.deskStorageWidth)||c.deskStorageWidth<25||c.deskStorageWidth>maxWidth)e.deskStorageWidth=`側架闊度須為 25–${fmt(maxWidth)} cm，並保留至少 40 cm 座位空間。`;
+    if(!Number.isInteger(c.deskStorageCount)||c.deskStorageCount<1||c.deskStorageCount>6)e.deskStorageCount="分格／櫃桶數目須為 1–6 的整數。";
+    else if(total/c.deskStorageCount<minGap)e.deskStorageCount=`每格／櫃桶高度須至少 ${minGap} cm，請減少數目或增加高度。`;
+    if(c.deskStorageDistribution==="custom"){
+      if(c.deskStorageHeights.length!==c.deskStorageCount)e.deskStorageHeights=`請輸入 ${c.deskStorageCount} 個高度。`;
+      else if(c.deskStorageHeights.some(value=>value<minGap))e.deskStorageHeights=`每個高度須至少 ${minGap} cm。`;
+      else if(Math.abs(sumHeights(c.deskStorageHeights)-total)>.2)e.deskStorageHeights=`自訂高度合計須為 ${fmt(total)} cm。`;
+    }
+    return e;
+  }
+  if(p.type==="metalShelf"){
+    const total=metalShelfClearHeight(c),count=c.metalShelfLevels-1;
+    if(c.front!=="none"||c.drawers!==0||c.shelves!==0||c.rail||c.back)e.front="金屬柱層架使用專用配置。";
+    if(!Number.isInteger(c.metalShelfLevels)||c.metalShelfLevels<2||c.metalShelfLevels>6)e.metalShelfLevels="層板數目須為 2–6 的整數。";
+    else if(total/count<8)e.metalShelfLevels="每層淨高須至少 8 cm，請減少層板或增加高度。";
+    if(c.metalShelfDistribution==="custom"){
+      if(c.metalShelfHeights.length!==count)e.metalShelfHeights=`請輸入 ${count} 個層高。`;
+      else if(c.metalShelfHeights.some(value=>value<8))e.metalShelfHeights="每層淨高須至少 8 cm。";
+      else if(Math.abs(sumHeights(c.metalShelfHeights)-total)>.2)e.metalShelfHeights=`自訂層高合計須為 ${fmt(total)} cm。`;
+    }
+    return e;
+  }
+  if(p.type==="table"||p.type==="bench"){
+    if(c.front!=="none"||c.drawers!==0||c.shelves!==0||c.rail||c.back)
+      e.front="此款枱凳不支援櫃體配件。";
+    return e;
+  }
+  if(p.type==="chest"&&(c.front!=="none"||c.shelves!==0||c.columns!==1||c.rail)){
+    e.drawers="櫃桶櫃使用單列全高櫃桶配置。";return e;
+  }
+  const allDrawers=c.interiorLayout==="allDrawers";
+  if(allDrawers&&(c.front!=="none"||c.drawers!==0||c.rail))
+    e.interiorLayout="全部櫃桶配置不可同時使用櫃門、底部櫃桶或掛衣桿。";
+  const B=c.base==="none"?0:c.baseH;
+  const innerH=c.h-B-2*T,innerW=c.w-(c.columns+1)*T;
+  const ft=c.front==="sliding"?2*T+.6:((c.front!=="none"||c.drawers>0||allDrawers)?T:0);
+  const bodyD=c.d-ft;
+  if(bodyD-(c.back?.9:0)-1.2<=3)e.d="內部深度不足，請增加深度。";
+  if(c.base==="plinth"&&bodyD<=9.6)e.d="此深度不足以建立封閉地腳。";
+  if(c.base==="legs"&&bodyD<14)e.d="成品櫃腳需要至少 14 cm 櫃體深度。";
+  if(innerH<5)e.h="高度不足以容納底座與板件。";
+  if(innerW/c.columns<(p.type==="box"?2:5))e.columns="每格淨闊太窄，請減少直向分隔板或增加闊度。";
+  const metrics=layoutMetrics(c,p),stack=metrics.stack,upper=metrics.upper,partitionArea=metrics.zoneH;
+  const activeDrawerCount=drawerCount(c,p);
+  if(c.drawerDistribution==="custom"&&activeDrawerCount>0){
+    if(c.drawerHeights.length!==activeDrawerCount)e.drawerHeights=`請輸入 ${activeDrawerCount} 個櫃桶高度。`;
+    else if(c.drawerHeights.some(value=>value<10))e.drawerHeights="每個櫃桶高度須至少 10 cm。";
+    else if((p.type==="chest"||allDrawers)&&Math.abs(sumHeights(c.drawerHeights)-innerH)>.2)
+      e.drawerHeights=`自訂櫃桶高度合計須為 ${fmt(innerH)} cm。`;
+  }
+  if(!allDrawers&&p.type!=="chest"&&c.shelfDistribution==="custom"&&c.shelves>0){
+    const expected=c.shelves+1,minGap=p.type==="box"?3:8;
+    if(c.shelfHeights.length!==expected)e.shelfHeights=`請輸入 ${expected} 個層板淨空高度。`;
+    else if(c.shelfHeights.some(value=>value<minGap))e.shelfHeights=`每格層板淨高須至少 ${minGap} cm。`;
+    else if(Math.abs(sumHeights(c.shelfHeights)-metrics.shelfClear)>.2)e.shelfHeights=`層板淨高合計須為 ${fmt(metrics.shelfClear)} cm。`;
+  }
+  if(p.type==="chest"){
+    if(c.drawerDistribution==="equal"&&innerH/c.drawers<10)e.drawers="每層櫃桶不足 10 cm，請減少數目或增加高度。";
+  }else{
+    if(upper<(c.front!=="none"?18:0))e.drawerH="櫃桶佔用過高，請調整數目／每層高度。";
+    if(allDrawers&&c.drawerDistribution==="equal"&&innerH/c.bayDrawers<10)e.bayDrawers="每格櫃桶高度不足 10 cm，請減少櫃桶數或增加高度。";
+    if(c.columns>1&&!allDrawers&&c.partitionZone!=="full"&&partitionArea<=0)
+      e.partitionZone="高度不足以建立上下分區，請增加高度或減少櫃桶。";
+    if(!allDrawers&&c.shelfDistribution==="equal"&&c.shelves>0&&(partitionArea-c.shelves*T)/(c.shelves+1)<(p.type==="box"?3:8))
+      e.shelves="層板間距不足，請減少層板／櫃桶或增加高度。";
+    if(!allDrawers&&c.rail&&partitionArea<30)e.rail="掛衣區高度不足，請調整分隔板位置／櫃桶或增加高度。";
+  }
+  return e;
+}
+function makeModel(p,c){
+  const W=c.w,H=c.h,D=c.d,parts=[];
+  const meta={doors:0,drawers:0,rails:0,supports:0};
+  function add(label,w,h,d,x,y,z,material="board",extra={}){
+    if(![w,h,d,x,y,z].every(Number.isFinite)||Math.min(w,h,d)<=0)
+      throw new Error("無效料件："+label);
+    parts.push({label,w,h,d,x,y,z,material,ext:ALL_FACES,...extra});
+  }
+  if(p.type==="deskStorage"){
+    const side=c.deskStorageSide,sign=side==="right"?1:-1;
+    const unitW=c.deskStorageWidth,unitCenter=sign*(W/2-unitW/2),panelH=H-T;
+    add("一體式枱面",W,T,D,0,H-T/2,0);
+    const panelXs=side==="left"?[-W/2+T/2,-W/2+unitW-T/2]:[W/2-unitW+T/2,W/2-T/2];
+    for(const x of panelXs)add("側架直板",T,panelH,D,x,panelH/2,0);
+    add("側架底板",unitW-2*T,T,D-1,unitCenter,T/2,0);
+    const heights=resolvedDeskStorageHeights(c);
+    if(c.deskStorageMode==="shelves"){
+      let y=T;
+      for(let i=0;i<c.deskStorageCount-1;i++){
+        y+=heights[i];
+        add("側架固定層板",unitW-2*T,T,D-1,unitCenter,y+T/2,0);
+        y+=T;
+      }
+    }else{
+      const innerW=unitW-2*T,drawerD=D-2;
+      let bottom=T;
+      for(let i=0;i<c.deskStorageCount;i++){
+        const height=heights[i],cy=bottom+height/2,motion={kind:"pull",distance:drawerD*.65};
+        add("側架櫃桶面板",innerW-.4,height-.3,T,unitCenter,cy,D/2-T/2,"board",{motion,ext:[0,2,3,4,5]});
+        for(const x of [unitCenter-innerW/2+1,unitCenter+innerW/2-1])add("側架櫃桶側板",1.2,height-3.8,drawerD,x,cy-1,0,"board",{motion,ext:[]});
+        add("側架櫃桶後板",innerW-3.2,height-3.8,1.2,unitCenter,cy-1,-drawerD/2+.6,"board",{motion,ext:[]});
+        add("側架櫃桶底板",innerW-3.2,.6,drawerD,unitCenter,cy-height/2+1.2,0,"back",{motion,ext:[]});
+        add("側架櫃桶把手",Math.min(14,innerW*.4),.65,1,unitCenter,cy,D/2+.5,"metal",{motion});
+        meta.drawers++;bottom+=height;
+      }
+    }
+    const legX=-sign*(W/2-3),legH=H-T;
+    for(const z of [-D/2+3,D/2-3]){add("金屬枱腳",2.2,legH,2.2,legX,legH/2,z,"support");meta.supports++;}
+    for(const y of [2.2,H-T-2.2]){add("金屬枱腳橫桿",2.2,2.2,D-6,legX,y,0,"support");meta.supports++;}
+    return {W,H,D,parts,meta};
+  }
+  if(p.type==="metalShelf"){
+    const levels=c.metalShelfLevels,openings=resolvedMetalShelfHeights(c),boardCenters=[T/2];
+    let y=T;
+    for(const height of openings){y+=height;boardCenters.push(y+T/2);y+=T;}
+    for(const boardY of boardCenters)add("金屬框層架板",W,T,D,0,boardY,0);
+    for(const x of [-W/2+2.5,W/2-2.5])for(const z of [-D/2+2.5,D/2-2.5]){
+      add("金屬直柱",1.5,H-T,1.5,x,H/2,z,"support");meta.supports++;
+    }
+    if(c.metalShelfRails){
+      for(let i=0;i<openings.length;i++){
+        const railY=boardCenters[i]+T/2+Math.min(16,openings[i]*.38);
+        for(const z of [-D/2+2.5,D/2-2.5]){add("層架防跌橫桿",W-5,1.2,1.2,0,railY,z,"support");meta.supports++;}
+        for(const x of [-W/2+2.5,W/2-2.5]){add("層架側護桿",1.2,1.2,D-5,x,railY,0,"support");meta.supports++;}
+      }
+    }
+    return {W,H,D,parts,meta};
+  }
+  if(isTable(p)){
+    add(p.type==="bench"?"坐面":"枱面",W,T,D,0,H-T/2,0);
+    const inset=5,legH=H-T,apron=Math.min(8,legH/4);
+    if(c.supportStyle==="fourLeg"){
+      const leg=5.5;
+      for(const x of [-W/2+inset,W/2-inset])for(const z of [-D/2+inset,D/2-inset]){
+        add("成品承托腳",leg,legH,leg,x,legH/2,z,"support");meta.supports++;
+      }
+      for(const z of [-D/2+inset,D/2-inset])add("長向支撐板",W-2*inset-leg,apron,T,0,H-T-apron/2,z);
+      for(const x of [-W/2+inset,W/2-inset])add("短向支撐板",T,apron,D-2*inset-leg,x,H-T-apron/2,0);
+    }else if(c.supportStyle==="uFrame"){
+      for(const x of [-W/2+inset,W/2-inset]){
+        for(const z of [-D/2+inset,D/2-inset]){add("U 形金屬直腳",2.2,legH,2.2,x,legH/2,z,"support");meta.supports++;}
+        add("U 形金屬底橫桿",2.2,2.2,D-2*inset,x,1.1,0,"support");meta.supports++;
+      }
+    }else{
+      for(const x of [-W/2+inset,W/2-inset]){add("板式枱腳",T,legH,D-2*inset,x,legH/2,0);meta.supports++;}
+      add("板式長橫撐",W-2*inset-T,apron,T,0,H-T-apron/2,0);
+    }
+    return {W,H,D,parts,meta};
+  }
+
+  const chest=p.type==="chest",allDrawers=!chest&&c.interiorLayout==="allDrawers",B=c.base==="none"?0:c.baseH;
+  const ft=c.front==="sliding"?2*T+.6:((c.front!=="none"||c.drawers>0||allDrawers)?T:0);
+  const bodyD=D-ft,bodyZ=-ft/2,caseH=H-B;
+  const innerW=W-2*T,innerH=caseH-2*T;
+  const backT=c.back ? .9 : 0;
+  const innerD=bodyD-backT-1.2,insideZ=-D/2+backT+innerD/2;
+  const openUpper=c.front==="none"&&!chest&&!allDrawers;
+  const fullyOpen=openUpper&&c.drawers===0;
+  const ext=list=>({ext:fullyOpen?ALL_FACES:list});
+
+  add("左側板",T,caseH,bodyD,-W/2+T/2,B+caseH/2,bodyZ,"board",ext([0,3]));
+  add("右側板",T,caseH,bodyD,W/2-T/2,B+caseH/2,bodyZ,"board",ext([0,2]));
+  add("頂板",innerW,T,bodyD,0,H-T/2,bodyZ,"board",ext([0,4]));
+  add("底板",innerW,T,bodyD,0,B+T/2,bodyZ,"board",ext([0,5]));
+  if(c.back)add("背板",innerW,innerH,backT,0,B+T+innerH/2,-D/2+backT/2,"back",ext([1]));
+
+  if(c.base==="legs"){
+    const xs=W>160?[-W/2+5,0,W/2-5]:[-W/2+5,W/2-5];
+    for(const x of xs)for(const z of [bodyZ-bodyD/2+5,bodyZ+bodyD/2-5]){
+      add("成品櫃腳",4,B,4,x,B/2,z,"support");meta.supports++;
+    }
+  }else if(c.base==="plinth"){
+    const pw=W-6,pd=bodyD-6;
+    for(const z of [bodyZ-pd/2+T/2,bodyZ+pd/2-T/2])
+      add("地腳前後板",pw,B,T,0,B/2,z);
+    for(const x of [-pw/2+T/2,pw/2-T/2])
+      add("地腳側板",T,B,pd-2*T,x,B/2,bodyZ);
+  }
+
+  const configuredDrawerHeights=resolvedDrawerHeights(c,p);
+  const bottomDrawerCount=allDrawers?0:c.drawers;
+  const stack=chest?innerH:sumHeights(configuredDrawerHeights.slice(0,bottomDrawerCount)),upperBottom=B+T+stack,upperH=innerH-stack;
+  const bay=(innerW-(c.columns-1)*T)/c.columns;
+  if(upperH>.05){
+    const hasPartitions=c.columns>1;
+    const partialZone=hasPartitions&&!allDrawers&&c.partitionZone!=="full";
+    const zoneH=partialZone?(upperH-T)/2:upperH;
+    const zoneBottom=partialZone&&c.partitionZone==="upper"?upperBottom+(upperH+T)/2:upperBottom;
+    if(partialZone){
+      add("上下分區層板",innerW,T,innerD,0,upperBottom+upperH/2,insideZ,"board",{ext:openUpper?ALL_FACES:[]});
+    }
+    for(let i=1;i<c.columns;i++){
+      const x=-innerW/2+i*bay+(i-.5)*T;
+      add("直向分隔板",T,zoneH,innerD,x,zoneBottom+zoneH/2,insideZ,"board",{ext:openUpper?ALL_FACES:[]});
+    }
+    const allColumns=Array.from({length:c.columns},(_,i)=>i);
+    const shelfColumns=allDrawers?[]:c.interiorLayout==="leftShelves"?[0]:c.interiorLayout==="rightShelves"?[c.columns-1]:allColumns;
+    const railColumns=!c.rail||allDrawers?[]:c.interiorLayout==="leftShelves"?allColumns.filter(i=>i!==0):c.interiorLayout==="rightShelves"?allColumns.filter(i=>i!==c.columns-1):allColumns;
+    for(let col=0;col<c.columns;col++){
+      const x=-innerW/2+bay/2+col*(bay+T);
+      if(shelfColumns.includes(col)&&c.shelves>0){
+        const openings=resolvedShelfHeights(c,p);let shelfY=zoneBottom+openings[0];
+        for(let i=0;i<c.shelves;i++){
+          add("活動層板",bay-.3,T,innerD,x,shelfY+T/2,insideZ,"board",{ext:openUpper?ALL_FACES:[]});
+          shelfY+=T+openings[i+1];
+        }
+      }
+      if(railColumns.includes(col)){
+        add("掛衣桿",bay-3,.8,.8,x,zoneBottom+zoneH-12,insideZ,"metal");meta.rails++;
+      }
+    }
+  }
+
+  function addDrawer(labelPrefix,xCenter,drawerW,cy,drawerH){
+    const dd=innerD-1;
+    const motion={kind:"pull",distance:innerD*.65};
+    add(labelPrefix+"面板",drawerW-.4,drawerH-.3,T,xCenter,cy,D/2-T/2,"board",{motion,ext:[0,2,3,4,5]});
+    for(const x of [xCenter-drawerW/2+1,xCenter+drawerW/2-1])
+      add(labelPrefix+"側板",1.2,drawerH-3.8,dd,x,cy-1,insideZ,"board",{motion,ext:[]});
+    add(labelPrefix+"後板",drawerW-3.2,drawerH-3.8,1.2,xCenter,cy-1,insideZ-dd/2+.6,"board",{motion,ext:[]});
+    add(labelPrefix+"底板",drawerW-3.2,.6,dd,xCenter,cy-drawerH/2+1.2,insideZ,"back",{motion,ext:[]});
+    add(labelPrefix+"把手",Math.min(14,drawerW*.4),.65,1,xCenter,cy,D/2+.5,"metal",{motion});
+    meta.drawers++;
+  }
+  let drawerBottom=B+T;
+  for(let i=0;i<bottomDrawerCount;i++){
+    const height=configuredDrawerHeights[i];addDrawer("櫃桶",0,innerW,drawerBottom+height/2,height);drawerBottom+=height;
+  }
+  if(allDrawers){
+    for(let col=0;col<c.columns;col++){
+      const x=-innerW/2+bay/2+col*(bay+T);let bayBottom=upperBottom;
+      for(let i=0;i<c.bayDrawers;i++){
+        const height=configuredDrawerHeights[i];addDrawer("分格櫃桶",x,bay,bayBottom+height/2,height);bayBottom+=height;
+      }
+    }
+  }
+
+  if(c.front!=="none"&&!chest&&!allDrawers){
+    const sliding=c.front==="sliding",namedCount=namedDoorCount(p);
+    const count=namedCount??(sliding?2:Math.max(1,Math.ceil(W/70)));
+    const cell=innerW/count,fw=sliding?cell+.9:cell-.3,fh=upperH-.3;
+    const glass=c.front==="glass",dt=glass ? .6 : T,cy=upperBottom+upperH/2;
+    for(let i=0;i<count;i++){
+      const x=-innerW/2+(i+.5)*cell;
+      const z=D/2-dt/2-(sliding&&i%2===1?T+.3:0),left=i%2===0;
+      const motion=sliding?{kind:"slide",distance:i===0?cell*.9:0}:
+        {kind:"hinge",px:x+(left?-fw/2:fw/2),pz:z,dir:left?-1:1};
+      add(sliding?"趟門板":glass?"玻璃門片":"掩門板",fw,fh,dt,x,cy,z,glass?"glass":"board",
+        {motion,role:"door",ext:[0,2,3,4,5]});
+      if(glass){
+        for(const xx of [x-fw/2+.4,x+fw/2-.4])
+          add("玻璃門直框",.8,fh,.8,xx,cy,z,"metal",{motion,role:"doorFrame"});
+        for(const yy of [cy-fh/2+.4,cy+fh/2-.4])
+          add("玻璃門橫框",fw,.8,.8,x,yy,z,"metal",{motion,role:"doorFrame"});
+      }
+      add("門把",.65,7,1.1,x+(left?fw/2-3:-fw/2+3),cy,z+dt/2+.55,"metal",{motion,role:"doorHandle"});
+      meta.doors++;
+    }
+    if(sliding){
+      add("趟門上軌",innerW,.7,ft-.3,0,H-T-.6,D/2-ft/2,"metal");
+      add("趟門下軌",innerW,.7,ft-.3,0,upperBottom+.6,D/2-ft/2,"metal");
+    }
+  }
+  return {W,H,D,parts,meta};
+}
+
+let state=initialState(),current=null,errors={};
+let filter={area:"all",category:"all",search:"",page:1};
+let view={yaw:-.62,pitch:.25,zoom:1,open:0,explode:0,cutaway:false,camera:"iso"};
+const drafts=new Map(),thumbCache=new Map();
+let saveTimer=0,toastTimer=0,paintFrame=0,dirty=false;
+let restored=false,restoreFailed=false,migrated=false;
+let submitting=false, sentFingerprint="";
+function serialize(){
+  return {schema:"ricefort-studio",version:11,edition:"customer",productId:state.productId,
+    configuration:cloneConfig(state.cfg),project:state.project,quantity:state.quantity,
+    request:{...state.request},savedAt:new Date().toISOString()};
+}
+function decodeDocument(data){
+  if(!data||data.schema!=="ricefort-studio"||![1,2,3,4,5,6,7,8,9,10,11].includes(data.version))
+    throw new Error("不是此 App 支援的 RiceFort 設計檔。");
+  const p=PRODUCTS.get(data.productId);
+  if(!p)throw new Error("設計檔中的款式不存在。");
+  if(!data.configuration||typeof data.configuration!=="object")
+    throw new Error("缺少配置資料。");
+  const cfg=defaults(p),raw=data.configuration;
+  for(const key of CONFIG_FIELDS){
+    if(!own(raw,key))continue;
+    if(data.version===1&&["surface","scope"].includes(key))continue;
+    if(NUMBER_FIELDS.includes(key)&&(typeof raw[key]!=="number"||!Number.isFinite(raw[key])))
+      throw new Error("數值格式不正確："+key);
+    if(BOOL_FIELDS.includes(key)&&typeof raw[key]!=="boolean")throw new Error("選項格式不正確："+key);
+    if(STRING_FIELDS.includes(key)&&typeof raw[key]!=="string")throw new Error("文字選項不正確："+key);
+    if(ARRAY_FIELDS.includes(key)&&(!Array.isArray(raw[key])||raw[key].some(value=>typeof value!=="number"||!Number.isFinite(value))))throw new Error("高度格式不正確："+key);
+    cfg[key]=ARRAY_FIELDS.includes(key)?[...raw[key]]:raw[key];
+  }
+  if(data.version===1){
+    cfg.surface=cfg.finish!=="F01"?"osmoColor":
+      ["clear","matte"].includes(raw.surface)?"osmoClear":"uv";
+    cfg.scope="outer";
+  }
+  const issue=validate(cfg,p);
+  if(Object.keys(issue).length)throw new Error(Object.values(issue)[0]);
+  const quantity=data.quantity??1,project=data.project??"";
+  if(!Number.isInteger(quantity)||quantity<1||quantity>50)throw new Error("數量須為 1–50。");
+  if(typeof project!=="string"||project.length>100)throw new Error("設計名稱格式不正確。");
+  const request=defaultRequest();
+  if(data.request!==undefined){
+    if(!data.request||typeof data.request!=="object")throw new Error("客戶要求格式不正確。");
+    for(const key of ["name","contact","method","notes","confirmedAt"]){
+      if(own(data.request,key)&&typeof data.request[key]!=="string")throw new Error("客戶要求文字格式不正確："+key);
+      if(own(data.request,key))request[key]=data.request[key];
+    }
+    if(own(data.request,"consent")&&typeof data.request.consent!=="boolean")throw new Error("客戶確認格式不正確。");
+    if(own(data.request,"consent"))request.consent=data.request.consent;
+    if(request.name.length>80||request.contact.length>120||request.notes.length>1000||request.method.length>30||request.confirmedAt.length>50)
+      throw new Error("客戶要求內容過長。");
+    if(request.confirmedAt&&!Number.isFinite(Date.parse(request.confirmedAt)))throw new Error("客戶確認時間格式不正確。");
+  }
+  makeModel(p,cfg);
+  return {productId:p.id,cfg,project,quantity,page:2,request};
+}
+try{
+  const raw=[STORE,...LEGACY_STORES].map(key=>localStorage.getItem(key)).find(Boolean);
+  if(raw){
+    const data=JSON.parse(raw);state=decodeDocument(data);
+    restored=true;migrated=data.version<11;
+  }
+}catch(error){
+  restoreFailed=true;runtimeLog.push("暫存還原："+error.message);
+}
+
+const getProduct=()=>PRODUCTS.get(state.productId);
+const sizeText=c=>`${fmt(c.w)} × ${fmt(c.h)} × ${fmt(c.d)} cm`;
+const finishText=c=>{const f=FINISH_MAP.get(c.finish);return f?`${f.id} · ${f.name}`:"—";};
+function toast(message){
+  clearTimeout(toastTimer);$("toast").textContent=message;$("toast").hidden=false;
+  toastTimer=setTimeout(()=>$("toast").hidden=true,4200);
+}
+function report(error){
+  runtimeLog.push(String(error?.message||error||"未知錯誤"));
+  $("runtimeError").textContent=IS_CUSTOMER?"App 遇到錯誤，請重新整理後再試。":"App 遇到錯誤。可到「更多 → 檢查 App」查看記錄。";
+  $("runtimeError").hidden=false;
+}
+window.addEventListener("error",e=>{if(e.error)report(e.error);});
+window.addEventListener("unhandledrejection",e=>report(e.reason));
+function flushSave(){
+  if(!dirty||!current)return;
+  try{
+    localStorage.setItem(STORE,JSON.stringify(serialize()));dirty=false;
+    $("saveStatus").textContent="設計已在本機暫存 · 可另存設計檔";
+  }catch{$("saveStatus").textContent="本機暫存不可用 · 請下載 JSON 備份";}
+}
+function queueSave(){
+  clearTimeout(saveTimer);
+  if(!current)return;
+  dirty=true;$("saveStatus").textContent="正在本機暫存……";
+  saveTimer=setTimeout(flushSave,350);
+}
+window.addEventListener("pagehide",flushSave);
+document.addEventListener("visibilitychange",()=>{if(document.hidden)flushSave();});
+
+/* Catalogue illustrations */
+function thumbSVG(model,color="#dfd3b6"){
+  const s=Math.min(154/model.W,135/model.H),bottom=157,top=bottom-model.H*s;
+  let svg=`<svg class="thumb" viewBox="0 0 220 180" aria-hidden="true"><ellipse cx="110" cy="165" rx="${round(Math.max(20,model.W*s*.58))}" ry="5" fill="#e9dfca"/>`;
+  for(const p of [...model.parts].sort((a,b)=>a.z-b.z)){
+    const x=110+(p.x-p.w/2)*s,y=top+(model.H-p.y-p.h/2)*s;
+    let fill=color,opacity=1;
+    if(["metal","support"].includes(p.material))fill="#88775b";
+    if(p.material==="glass"){fill="#dedbd1";opacity=.6;}
+    if(p.role==="door"&&p.material==="board")fill="none";
+    if(p.material==="back")fill="#e9deca";
+    svg+=`<rect x="${round(x)}" y="${round(y)}" width="${round(Math.max(.6,p.w*s))}" height="${round(Math.max(.6,p.h*s))}" fill="${fill}" fill-opacity="${opacity}" stroke="#826d4d" stroke-width="${p.material==="metal"?.6:1.1}" stroke-linejoin="round"/>`;
+  }
+  return svg+"</svg>";
+}
+function thumbnail(p){
+  if(!thumbCache.has(p.id))thumbCache.set(p.id,thumbSVG(makeModel(p,defaults(p))));
+  return thumbCache.get(p.id);
+}
+function renderSpaces(){
+  $("spaces").innerHTML=["all",...new Set(CATALOGUE.map(p=>p.area))].map(area=>{
+    const count=area==="all"?CATALOGUE.length:CATALOGUE.filter(p=>p.area===area).length;
+    return `<button class="space" data-area="${esc(area)}" aria-pressed="${filter.area===area}">${esc(area==="all"?"全部空間":area)}<span>${count}</span></button>`;
+  }).join("");
+}
+function renderCategories(){
+  const categories=[...new Set(CATALOGUE.filter(p=>filter.area==="all"||p.area===filter.area).map(p=>p.category))];
+  if(!categories.includes(filter.category))filter.category="all";
+  $("category").replaceChildren(new Option("全部分類","all"));
+  categories.forEach(c=>$("category").add(new Option(c,c)));
+  $("category").value=filter.category;
+}
+const normalized=v=>String(v).normalize("NFKC").toLowerCase().trim();
+function filteredProducts(){
+  const q=normalized(filter.search);
+  return CATALOGUE.filter(p=>
+    (filter.area==="all"||p.area===filter.area)&&
+    (filter.category==="all"||p.category===filter.category)&&
+    (!q||normalized(`${p.id} ${p.name} ${p.area} ${p.category} ${p.type} ${p.area==="辦公室"?"office":""}`).includes(q)));
+}
+function renderCatalogue(focusId=null){
+  const list=filteredProducts(),pages=Math.max(1,Math.ceil(list.length/PAGE_SIZE));
+  filter.page=clamp(filter.page,1,pages);
+  const start=(filter.page-1)*PAGE_SIZE,visible=list.slice(start,start+PAGE_SIZE);
+  $("resultCount").textContent=list.length?`${list.length} 款設計 · 顯示 ${start+1}–${Math.min(start+PAGE_SIZE,list.length)}`:"沒有符合的設計";
+  $("catalogue").innerHTML=visible.length?visible.map(p=>`
+    <button class="product" data-product="${p.id}" aria-pressed="${p.id===state.productId}" aria-label="${esc(p.name+"，"+sizeText(p))}">
+      <span class="product-check">✓ 已選擇</span>${p.area==="辦公室"?'<span class="product-office">OFFICE</span>':""}
+      ${thumbnail(p)}<span class="product-name">${esc(p.name)}</span><span class="product-dim">${sizeText(p)}</span>
+    </button>`).join(""):`<div class="empty"><h3>暫時找不到這個款式</h3><p class="muted">試試其他關鍵字，或查看全部空間。</p><button class="btn" data-action="clearFilters">清除篩選</button></div>`;
+  let html="";
+  if(pages>1){
+    html+=`<button class="page-button" data-catalog-page="${filter.page-1}" ${filter.page===1?"disabled":""} aria-label="上一頁">←</button>`;
+    for(let i=1;i<=pages;i++)html+=`<button class="page-button" data-catalog-page="${i}" ${i===filter.page?'aria-current="page"':""}>${i}</button>`;
+    html+=`<button class="page-button" data-catalog-page="${filter.page+1}" ${filter.page===pages?"disabled":""} aria-label="下一頁">→</button>`;
+  }
+  $("pagination").innerHTML=html;
+  if(focusId)document.querySelector(`[data-product="${focusId}"]`)?.focus({preventScroll:true});
+}
+function clearFilters(){
+  filter={area:"all",category:"all",search:"",page:1};$("search").value="";
+  renderSpaces();renderCategories();renderCatalogue();
+}
+function renderSwatches(){
+  $("swatches").innerHTML=FINISHES.map(f=>`
+    <button type="button" class="swatch" data-finish="${f.id}" aria-label="${f.id} ${f.name}" aria-pressed="${state.cfg.finish===f.id}" title="${f.id} · ${f.name}">
+      <span class="swatch-color" style="--swatch:${f.color}"></span><span class="swatch-code">${f.id}</span>
+    </button>`).join("");
+}
+function syncForm(){
+  for(const el of $$("[data-field]")){
+    const v=state.cfg[el.dataset.field];
+    if(el.type==="checkbox")el.checked=!!v;
+    else el.value=el.dataset.field==="columns"?v-1:v;
+  }
+
+  if($("customerProject"))$("customerProject").value=state.project;
+  if($("customerQuantity"))$("customerQuantity").value=state.quantity;
+  if($("requestName"))$("requestName").value=state.request.name;
+  if($("requestContact"))$("requestContact").value=state.request.contact;
+  if($("requestMethod"))$("requestMethod").value=state.request.method;
+  if($("requestNotes"))$("requestNotes").value=state.request.notes;
+  if($("requestConsent"))$("requestConsent").checked=state.request.consent;
+  const b=bounds(getProduct());
+  for(const k of ["w","h","d"]){$("f-"+k).min=b[k][0];$("f-"+k).max=b[k][1];}
+  $("sizeHint").textContent=`外尺寸，不含突出把手。闊 ${b.w.join("–")}、高 ${b.h.join("–")}、深 ${b.d.join("–")} cm。`;
+  renderSwatches();syncConditionalFields();
+}
+function renderHeightInputs(kind,values,count,totalText){
+  count=Number.isInteger(count)&&count>0?count:0;
+  const container=$(kind+"HeightInputs"),active=document.activeElement;
+  const deskDrawers=kind==="desk"&&state.cfg.deskStorageMode==="drawers";
+  const label=kind==="shelf"?"格淨高":kind==="metal"?"層淨高":deskDrawers?"個櫃桶":"格淨高";
+  const min=kind==="shelf"?(getProduct().type==="box"?3:8):(kind==="metal"?8:(kind==="desk"&&!deskDrawers?8:10));
+  if(container.children.length!==count){
+    container.innerHTML=Array.from({length:count},(_,index)=>`<label for="height-${kind}-${index}">第 ${index+1} ${label}<input id="height-${kind}-${index}" data-height-kind="${kind}" data-height-index="${index}" type="number" min="${min}" max="260" step="0.1" inputmode="decimal"></label>`).join("");
+  }
+  Array.from(container.querySelectorAll("input")).forEach((input,index)=>{
+    input.min=min;input.parentElement.firstChild.textContent=`第 ${index+1} ${label}`;
+    if(input!==active)input.value=Number.isFinite(values[index])?values[index]:"";
+  });
+  $(kind+"HeightTotal").textContent=totalText;
+}
+function syncConditionalFields(){
+  const p=getProduct(),c=state.cfg,table=isTable(p),regularTable=p.type==="table"||p.type==="bench",desk=p.type==="deskStorage",metal=p.type==="metalShelf",chest=p.type==="chest",allDrawers=c.interiorLayout==="allDrawers";
+  $("caseControls").hidden=table;$("baseControls").hidden=table;
+  $("tableControls").hidden=!regularTable;$("deskStorageControls").hidden=!desk;$("metalShelfControls").hidden=!metal;
+  $("frontField").hidden=chest||allDrawers;$("partitionFields").hidden=chest;$("railField").hidden=chest||allDrawers;
+  $("f-partitionZone").disabled=c.columns<=1||allDrawers;
+  $("partitionZoneHint").textContent=allDrawers
+    ?"全部櫃桶會使用全高直向分隔板。"
+    :c.columns<=1
+    ?"分隔板數為 0，位置設定暫不適用。"
+    :"選上方或下方時，系統會加入一塊水平分區板。";
+  $("shelfCountField").hidden=allDrawers;$("bayDrawerField").hidden=!allDrawers;
+  $("shelfDistributionField").hidden=allDrawers||c.shelves<=0;
+  $("shelfHeightsField").hidden=allDrawers||c.shelves<=0||c.shelfDistribution!=="custom";
+  const usableDrawerHeight=c.h-(c.base==="none"?0:c.baseH)-2*T;
+  $("f-bayDrawers").max=Math.max(1,Math.min(8,Math.floor(usableDrawerHeight/10)));
+  $("bottomDrawerFields").hidden=allDrawers;
+  const activeDrawerCount=drawerCount(c,p);
+  $("drawerDistributionField").hidden=table||activeDrawerCount<=0;
+  $("drawerHeightsField").hidden=table||activeDrawerCount<=0||c.drawerDistribution!=="custom";
+  $("drawerHeightField").hidden=chest||allDrawers||!(c.drawers>0)||c.drawerDistribution==="custom";
+  $("baseHeightField").hidden=c.base==="none";
+  $("drawerLabel").textContent=chest?"櫃桶數目":"底部櫃桶";
+  $("f-drawers").min=chest?1:0;
+  $("interiorLayoutHint").textContent=c.columns<=1&&["leftShelves","rightShelves"].includes(c.interiorLayout)
+    ?"目前只有一格，左邊／右邊層板效果相同。"
+    :"左／右只代表最外側分格；其餘分格可保留作掛衣或開放空間。";
+  $("railLabelText").textContent=["leftShelves","rightShelves"].includes(c.interiorLayout)?"沒有層板的分格加入掛衣桿":"每格加入掛衣桿";
+  const metrics=layoutMetrics(c,p),shelfValues=Array.isArray(c.shelfHeights)?c.shelfHeights:[],drawerValues=Array.isArray(c.drawerHeights)?c.drawerHeights:[];
+  renderHeightInputs("shelf",shelfValues,c.shelves+1,`可用淨高 ${fmt(metrics.shelfClear)} cm；目前合計 ${fmt(sumHeights(shelfValues))} cm。高度由下至上。`);
+  const drawerTotal=sumHeights(drawerValues);
+  renderHeightInputs("drawer",drawerValues,activeDrawerCount,chest||allDrawers
+    ?`可用總高 ${fmt(metrics.innerH)} cm；目前合計 ${fmt(drawerTotal)} cm。高度由下至上。`
+    :`目前櫃桶合計 ${fmt(drawerTotal)} cm；餘下上方空間 ${fmt(metrics.innerH-drawerTotal)} cm。`);
+  const deskValues=Array.isArray(c.deskStorageHeights)?c.deskStorageHeights:[],deskTotal=deskStorageClearHeight(c);
+  const deskMax=Math.min(60,c.w-40);
+  $("f-deskStorageWidth").max=deskMax;
+  $("deskStorageWidthHint").textContent=`可選 25–${fmt(deskMax)} cm；系統保留最少 40 cm 座位空間。`;
+  $("deskStorageCountLabel").textContent=c.deskStorageMode==="drawers"?"櫃桶數目":"分格數目";
+  $("deskStorageHeightsTitle").textContent=c.deskStorageMode==="drawers"?"每個櫃桶高度 · cm":"每格層板淨空高度 · cm";
+  $("deskStorageHeightsField").hidden=!desk||c.deskStorageDistribution!=="custom";
+  renderHeightInputs("desk",deskValues,c.deskStorageCount,`可用總高 ${fmt(deskTotal)} cm；目前合計 ${fmt(sumHeights(deskValues))} cm。高度由下至上。`);
+  const metalValues=Array.isArray(c.metalShelfHeights)?c.metalShelfHeights:[],metalTotal=metalShelfClearHeight(c);
+  $("metalShelfHeightsField").hidden=!metal||c.metalShelfDistribution!=="custom";
+  renderHeightInputs("metal",metalValues,c.metalShelfLevels-1,`可用淨高 ${fmt(metalTotal)} cm；目前合計 ${fmt(sumHeights(metalValues))} cm。高度由下至上。`);
+  $("drawerNote").textContent=allDrawers?`全部分格使用同一組${c.drawerDistribution==="custom"?"自訂":"平均"}櫃桶高度。`:chest?`櫃桶會${c.drawerDistribution==="custom"?"按輸入高度":"平均"}分配整個櫃內高度。`:
+    c.drawers>0?"櫃桶位於底部；層板、櫃門及掛衣區使用餘下空間。":"可加入底部櫃桶，或保留內部空間。";
+  $("scopeField").hidden=c.surface==="uv";
+}
+function showValidation(){
+  $$(".field-error").forEach(el=>{el.hidden=true;el.textContent="";});
+  $$("[aria-invalid]").forEach(el=>el.removeAttribute("aria-invalid"));
+  for(const [key,message] of Object.entries(errors)){
+    const heightFields={shelfHeights:"shelfHeightInputs",drawerHeights:"drawerHeightInputs",deskStorageHeights:"deskHeightInputs",metalShelfHeights:"metalHeightInputs"};
+    const field=key==="quantity"?(IS_CUSTOMER?$("customerQuantity"):$("quantity")):heightFields[key]?$(heightFields[key]):$("f-"+key);
+    if(field)field.setAttribute("aria-invalid","true");
+    const hint=key==="quantity"&&IS_CUSTOMER?$("err-customerQuantity"):$("err-"+key);
+    if(hint){hint.textContent=message;hint.hidden=false;}
+  }
+  const messages=Object.values(errors);
+  $("errorSummary").hidden=!messages.length;$("errorSummary").textContent=messages[0]||"";
+}
+function refreshDesign(save=false){
+  clearTimeout(saveTimer);
+  errors=validate(state.cfg,getProduct());
+  if(!Number.isInteger(state.quantity)||state.quantity<1||state.quantity>50)errors.quantity="數量須為 1–50 的整數。";
+  current=null;
+  if(!Object.keys(errors).length){
+    try{
+      const model=makeModel(getProduct(),state.cfg);
+      current={model};
+    }catch(error){errors.h="配置未能生成，請還原預設後重試。";report(error);}
+  }
+  syncConditionalFields();showValidation();renderComputed();
+  if(save&&current)queueSave();
+  else if(save)$("saveStatus").textContent="設定未完成 · 上一次有效暫存未被覆蓋";
+}
+
+function renderComputed(){
+  const p=getProduct(),c=state.cfg;
+  $("designSubtitle").textContent=`${p.name} · ${p.id}`;
+  $("dockName").textContent=p.name;
+  $("finishName").textContent=finishText(c)+" · "+(SURFACES[c.surface]||"");
+  $("preview").hidden=false;$("previewPlaceholder").hidden=true;
+  $$("[data-needs-design]").forEach(el=>el.disabled=!current);
+  $("next").disabled=state.page>1&&!current||submitting;
+  if(!current){
+    $("dockDetails").textContent="請先修正標示的設定";
+    $("previewDimensions").textContent="顯示上一次有效效果；請修正設定後更新";
+    $("customerReviewThumb").innerHTML="";$("customerSummaryText").value="";
+    return;
+  }
+  const f=FINISH_MAP.get(c.finish);
+  $("dockDetails").textContent=`${sizeText(c)} · ${f.name} · ${SURFACES[c.surface]}`;
+  $("previewDimensions").textContent=sizeText(c);
+  $("customerReviewThumb").innerHTML=thumbSVG(current.model,f.color);
+  $("customerReviewName").textContent=state.project.trim()||p.name;
+  $("customerReviewDescription").innerHTML=`${esc(p.name)} · ${p.id}<br>${esc(sizeText(c))}<br>${esc(INTERIOR_LAYOUTS[c.interiorLayout])}<br>${esc(finishText(c))} · ${SURFACES[c.surface]}`;
+  $("customerSummaryText").value=summary();
+
+  requestPaint();
+}
+
+/* Native Canvas 3D — no remote library or asset required. */
+const FACE_DEFS=[
+  {v:[4,5,6,7],n:[0,0,1],shade:1},
+  {v:[1,0,3,2],n:[0,0,-1],shade:.77},
+  {v:[5,1,2,6],n:[1,0,0],shade:.89},
+  {v:[0,4,7,3],n:[-1,0,0],shade:.81},
+  {v:[7,6,2,3],n:[0,1,0],shade:1.07},
+  {v:[0,1,5,4],n:[0,-1,0],shade:.68}
+];
+function rotateY(point,a){
+  const [x,y,z]=point,s=Math.sin(a),c=Math.cos(a);
+  return [x*c+z*s,y,-x*s+z*c];
+}
+function cameraPoint(point){
+  const [x,y,z]=rotateY(point,view.yaw),cp=Math.cos(view.pitch),sp=Math.sin(view.pitch);
+  return [x,y*cp-z*sp,y*sp+z*cp];
+}
+function shadeHex(hex,factor){
+  const n=parseInt(hex.slice(1),16);
+  const rgb=[(n>>16)&255,(n>>8)&255,n&255].map(v=>clamp(Math.round(v*factor),0,255));
+  return `rgb(${rgb.join(",")})`;
+}
+function transformedPart(part,model){
+  const dx=part.w/2,dy=part.h/2,dz=part.d/2;
+  const local=[[-dx,-dy,-dz],[dx,-dy,-dz],[dx,dy,-dz],[-dx,dy,-dz],[-dx,-dy,dz],[dx,-dy,dz],[dx,dy,dz],[-dx,dy,dz]];
+  const motion=part.motion;
+  const angle=motion?.kind==="hinge"?motion.dir*view.open*Math.PI*.52:0;
+  const ex=view.explode*part.x*.38,ey=view.explode*(part.y-model.H/2)*.38,ez=view.explode*part.z*.65;
+  const vertices=local.map(v=>{
+    let point=[part.x+v[0],part.y+v[1],part.z+v[2]];
+    if(motion?.kind==="hinge"){
+      point=rotateY([point[0]-motion.px,point[1],point[2]-motion.pz],angle);
+      point[0]+=motion.px;point[2]+=motion.pz;
+    }else if(motion?.kind==="slide")point[0]+=motion.distance*view.open;
+    else if(motion?.kind==="pull")point[2]+=motion.distance*view.open;
+    point[0]+=ex;point[1]+=ey-model.H/2;point[2]+=ez;
+    return cameraPoint(point);
+  });
+  return {vertices,angle};
+}
+function paintScene(canvas,width,height,dpr=1){
+  if(!current||width<20||height<20)return;
+  canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
+  const ctx=canvas.getContext("2d");if(!ctx)throw new Error("Canvas 預覽不可用。");
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const bg=ctx.createLinearGradient(0,0,0,height);
+  bg.addColorStop(0,"#faf7ef");bg.addColorStop(1,"#f1e9d9");
+  ctx.fillStyle=bg;ctx.fillRect(0,0,width,height);
+  const model=current.model,faces=[],points=[],c=state.cfg;
+  const selected=FINISH_MAP.get(c.finish).color,natural=FINISH_MAP.get("F01").color;
+  model.parts.forEach((part,index)=>{
+    if(view.cutaway&&["door","doorFrame","doorHandle"].includes(part.role))return;
+    const transformed=transformedPart(part,model);points.push(...transformed.vertices);
+    FACE_DEFS.forEach((def,j)=>{
+      const normal=cameraPoint(rotateY(def.n,transformed.angle));
+      if(normal[2]<=.0001)return;
+      const vertices=def.v.map(i=>transformed.vertices[i]);
+      faces.push({vertices,depth:vertices.reduce((s,p)=>s+p[2],0)/4,part,faceIndex:j,shade:def.shade,seed:index*17+j*101});
+    });
+  });
+  if(!points.length)return;
+  const minX=Math.min(...points.map(p=>p[0])),maxX=Math.max(...points.map(p=>p[0]));
+  const minY=Math.min(...points.map(p=>p[1])),maxY=Math.max(...points.map(p=>p[1]));
+  const scale=Math.min((width-75)/(maxX-minX||1),(height-85)/(maxY-minY||1))*view.zoom;
+  const cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+  const project=p=>[width/2+(p[0]-cx)*scale,height/2-(p[1]-cy)*scale-4];
+  ctx.fillStyle="#aa916929";ctx.beginPath();
+  ctx.ellipse(width/2,height/2+(maxY-minY)*scale/2+4,
+    Math.min(width*.37,Math.max(30,(maxX-minX)*scale*.43)),
+    Math.max(6,Math.min(20,model.D*scale*.10)),0,0,Math.PI*2);ctx.fill();
+  faces.sort((a,b)=>a.depth-b.depth);
+  for(const face of faces){
+    const polygon=face.vertices.map(project),p=face.part;
+    const oilFace=c.surface!=="uv"&&(c.scope==="all"||p.ext.includes(face.faceIndex));
+    let color=oilFace?selected:natural,factor=face.shade;
+    if(p.material==="back")factor*=.96;
+    if(p.material==="metal")color="#88795f";
+    if(p.material==="support")color="#716048";
+    if(p.material==="glass")color="#d3d5cb";
+    ctx.beginPath();polygon.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();
+    ctx.globalAlpha=p.material==="glass"?.42:1;
+    ctx.fillStyle=shadeHex(color,factor);ctx.fill();ctx.globalAlpha=1;
+    ctx.strokeStyle=p.material==="glass"?"#999d89":"#69543980";ctx.lineWidth=.65;ctx.stroke();
+    if(["board","back"].includes(p.material)){
+      const xs=polygon.map(p=>p[0]),ys=polygon.map(p=>p[1]);
+      const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),area=(x1-x0)*(y1-y0);
+      if(area>1500){
+        ctx.save();ctx.clip();ctx.fillStyle="#66503924";
+        let seed=face.seed+12345;
+        const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+        for(let i=0;i<Math.min(85,Math.floor(area/900));i++)
+          ctx.fillRect(x0+rand()*(x1-x0),y0+rand()*(y1-y0),.55+rand()*.65,.35+rand()*.55);
+        ctx.restore();
+      }
+    }
+  }
+}
+function requestPaint(){
+  if(paintFrame)return;
+  paintFrame=requestAnimationFrame(()=>{
+    paintFrame=0;const canvas=$("preview");
+    if(!current||canvas.hidden||!canvas.clientWidth)return;
+    try{paintScene(canvas,canvas.clientWidth,canvas.clientHeight,Math.min(window.devicePixelRatio||1,2));}
+    catch(e){report(e);}
+  });
+}
+function syncCameraButtons(){
+  $$("[data-camera]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.camera===view.camera)));
+}
+function setCamera(name){
+  const settings={iso:[-.62,.25],front:[0,0],side:[-Math.PI/2,0]};
+  [view.yaw,view.pitch]=settings[name]||settings.iso;
+  view.zoom=1;view.camera=name;syncCameraButtons();requestPaint();
+}
+function resetView(){
+  view={yaw:-.62,pitch:.25,zoom:1,open:0,explode:0,cutaway:false,camera:"iso"};
+  $("opening").value=0;$("explosion").value=0;$("cutaway").checked=false;
+  $("openingValue").textContent="0%";$("explosionValue").textContent="0%";
+  syncCameraButtons();requestPaint();
+}
+function summary(){
+  if(!current)return "";
+  const p=getProduct(),c=state.cfg;
+  const lines=[
+    "RiceFort · 稻一傢俬設計方案",
+    "設計名稱："+(state.project.trim()||p.name),
+    "範本："+p.name+" ("+p.id+")","空間："+p.area,
+    "外尺寸（闊 × 高 × 深）："+sizeText(c),
+    "飾面方案："+SURFACES[c.surface],
+    "預覽參考色："+finishText(c)
+  ];
+
+  if(p.type==="deskStorage"){
+    lines.push(
+      "側架位置："+(c.deskStorageSide==="left"?"左邊":"右邊")+`；闊度 ${fmt(c.deskStorageWidth)} cm`,
+      "側架內部："+DESK_STORAGE_MODES[c.deskStorageMode]+`；${c.deskStorageCount} ${c.deskStorageMode==="drawers"?"個櫃桶":"格"}`,
+      "分配高度："+(c.deskStorageDistribution==="custom"?c.deskStorageHeights.map(value=>fmt(value)).join(" / ")+" cm（由下至上）":"平均分配")
+    );
+  }else if(p.type==="metalShelf"){
+    lines.push(
+      `層板：${c.metalShelfLevels} 塊；層間 ${c.metalShelfLevels-1} 格`,
+      "層高："+(c.metalShelfDistribution==="custom"?c.metalShelfHeights.map(value=>fmt(value)).join(" / ")+" cm（由下至上）":"平均分配"),
+      "防跌護欄："+(c.metalShelfRails?"有":"無")
+    );
+  }else if(p.type==="table"||p.type==="bench"){
+    lines.push("承托形式："+SUPPORT_STYLES[c.supportStyle]);
+  }else{
+    if(p.type==="chest"){
+      lines.push("配置："+c.drawers+" 層櫃桶","櫃桶高度："+(c.drawerDistribution==="custom"?c.drawerHeights.map(value=>fmt(value)).join(" / ")+" cm（由下至上）":"平均分配"));
+    }
+    else{
+      const allDrawers=c.interiorLayout==="allDrawers";
+      lines.push("櫃門："+(allDrawers?"不適用（全部櫃桶）":FRONTS[c.front]),"直向分隔板："+(c.columns-1)+" 塊（"+c.columns+" 格）"+(c.columns>1?"；位置："+(allDrawers?"全高":PARTITION_ZONES[c.partitionZone]):""),"內部配置："+INTERIOR_LAYOUTS[c.interiorLayout]);
+      if(allDrawers){
+        lines.push(`每格櫃桶：${c.bayDrawers} 層；合共 ${c.bayDrawers*c.columns} 個`,`櫃桶高度：${c.drawerDistribution==="custom"?c.drawerHeights.map(value=>fmt(value)).join(" / ")+" cm（由下至上）":"平均分配"}`);
+      }
+      else{
+        lines.push("所選分格層板："+c.shelves+" 塊");
+        if(c.shelves)lines.push("層板淨高："+(c.shelfDistribution==="custom"?c.shelfHeights.map(value=>fmt(value)).join(" / ")+" cm（由下至上）":"平均分配"));
+        if(c.drawers)lines.push(`底部櫃桶：${c.drawers} 層`,`櫃桶高度：${c.drawerDistribution==="custom"?c.drawerHeights.map(value=>fmt(value)).join(" / ")+" cm（由下至上）":"等高，每層 "+fmt(c.drawerH)+" cm"}`);
+        if(c.rail)lines.push(["leftShelves","rightShelves"].includes(c.interiorLayout)?"掛衣桿：沒有層板的分格各一支":"掛衣桿：每格一支");
+      }
+    }
+    lines.push("背板："+(c.back?"有":"無"),"底座："+BASES[c.base]+(c.base==="none"?"":`，${fmt(c.baseH)} cm`));
+  }
+  lines.push("數量："+state.quantity);
+  lines.push("","此設計為效果示意，實際製作及報價須由 RiceFort 確認。");
+  return lines.join("\n");
+}
+
+/* Navigation, persistence, import/export */
+function showPage(page,focus=true){
+  state.page=page;
+  for(let i=1;i<=2;i++)$("step"+i).hidden=i!==page;
+  $("customerStep3").hidden=!(IS_CUSTOMER&&page===3);
+  $$(".step").forEach(b=>{
+    if(Number(b.dataset.page)===page)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current");
+  });
+  $("previous").disabled=page===1;
+  $("next").textContent=(IS_CUSTOMER
+    ?["下一步：修改尺寸及配置 →","下一步：確認設計 →","傳送報價要求"]
+    :["開始訂造 →","確認細節 →","查看方案 →","返回選款"])[page-1];
+  $("next").disabled=page>1&&page<MAX_PAGE&&!current||page===MAX_PAGE&&!current||submitting;
+  if(focus){
+    window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+    const title=IS_CUSTOMER&&page===3?$("titleCustomer3"):$("title"+page);title.tabIndex=-1;title.focus({preventScroll:true});
+  }
+  requestPaint();
+}
+function goToPage(page,focus=true){
+  if(submitting)return;
+  page=clamp(Number(page)||1,1,MAX_PAGE);
+  if(page>=3&&!current){focusError();toast("請先修正標示的設定。");return;}
+  showPage(page,focus);
+}
+function focusError(){
+  const key=Object.keys(errors)[0];if(!key)return;
+  showPage(key==="quantity"?(IS_CUSTOMER?3:4):2,false);
+  const heightFields={shelfHeights:"shelfHeightInputs",drawerHeights:"drawerHeightInputs",deskStorageHeights:"deskHeightInputs",metalShelfHeights:"metalHeightInputs"};
+  const field=key==="quantity"?(IS_CUSTOMER?$("customerQuantity"):$("quantity")):heightFields[key]?$(heightFields[key]).querySelector("input"):$("f-"+key);
+  if(field){
+    for(let node=field.parentElement;node;node=node.parentElement)if(node.tagName==="DETAILS")node.open=true;
+    field.focus();field.scrollIntoView({block:"center"});
+  }else $("errorSummary").scrollIntoView({block:"center"});
+}
+function chooseProduct(id){
+  if(id===state.productId||!PRODUCTS.has(id))return;
+  const old=state.cfg;
+  if(!Object.keys(validate(old,getProduct())).length)drafts.set(state.productId,cloneConfig(old));
+  state.productId=id;
+  state.cfg=drafts.has(id)?cloneConfig(drafts.get(id)):{
+    ...defaults(getProduct()),finish:old.finish,surface:old.surface,scope:old.scope
+  };
+  state.request.confirmedAt="";
+  resetView();syncForm();refreshDesign(true);renderCatalogue(id);
+}
+function filename(ext,suffix=""){
+  const name=(state.project.trim()||getProduct().id).replace(/[\\/:*?"<>|\u0000-\u001f]/g,"-").slice(0,70);
+  return "RiceFort-"+name+suffix+"."+ext;
+}
+function download(blob,name){
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+function requireDesign(){
+  if(current)return true;focusError();toast("請先完成有效設計。");return false;
+}
+function saveJSON(){
+  if(!requireDesign())return;
+  download(new Blob([JSON.stringify(serialize(),null,2)],{type:"application/json"}),filename("json"));
+  toast("已儲存設計檔，可重新載入。");
+}
+async function savePNG(){
+  if(!requireDesign())return;
+  const canvas=document.createElement("canvas");paintScene(canvas,1500,1150,1);
+  const ctx=canvas.getContext("2d");
+  ctx.fillStyle="#73562d";ctx.font="600 27px Arial";ctx.fillText("RiceFort",38,45);
+  ctx.font="16px Arial";ctx.fillText(getProduct().name+" · "+sizeText(state.cfg),38,79);
+  ctx.fillStyle="#86765c";ctx.font="13px Arial";
+  ctx.fillText("DESIGN PREVIEW · "+finishText(state.cfg)+" · "+SURFACES[state.cfg.surface],38,1113);
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/png"));
+  if(!blob)throw new Error("預覽圖片未能匯出。");
+  download(blob,filename("png"));toast("已下載預覽圖片。");
+}
+async function copySummary(){
+  if(!requireDesign())return;
+  try{
+    if(!navigator.clipboard)throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(summary());toast("已複製設計摘要。");
+  }catch{
+    $("manualCopy").value=summary();$("copyDialog").showModal();
+    setTimeout(()=>{$("manualCopy").focus();$("manualCopy").select();},50);
+  }
+}
+async function shareDesign(){
+  if(!requireDesign())return;
+  if(navigator.share){
+    try{await navigator.share({title:state.project||getProduct().name,text:summary()});}
+    catch(e){if(e.name!=="AbortError")await copySummary();}
+  }else await copySummary();
+}
+function validateCustomerRequest(){
+  const request=state.request,issue={};
+  for(const id of ["requestName","requestContact","requestConsent"]){
+    $(id).removeAttribute("aria-invalid");$("err-"+id).hidden=true;$("err-"+id).textContent="";
+  }
+  if(!request.name.trim())issue.requestName="請填寫姓名。";
+  const contact=request.contact.trim();
+  const email=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+  const phone=/^\+?[\d ()-]+$/.test(contact)&&contact.replace(/\D/g,"").length>=8&&contact.replace(/\D/g,"").length<=15;
+  if(!contact)issue.requestContact="請填寫電話或電郵。";
+  else if(!email&&!phone)issue.requestContact="請輸入有效的電話或電郵。";
+  else if(request.method==="電郵"&&!email)issue.requestContact="你選擇了電郵聯絡，請填寫電郵地址。";
+  else if(request.method!=="電郵"&&!phone)issue.requestContact="你選擇了電話／WhatsApp 聯絡，請填寫電話號碼。";
+  if(!["WhatsApp","電話","電郵"].includes(request.method))issue.requestContact="請選擇有效聯絡方式。";
+  if(!request.consent)issue.requestConsent="請先確認設計資料及聯絡同意。";
+  for(const [id,message] of Object.entries(issue)){
+    $(id).setAttribute("aria-invalid","true");$("err-"+id).textContent=message;$("err-"+id).hidden=false;
+  }
+  const messages=Object.values(issue);$("requestErrors").hidden=!messages.length;$("requestErrors").textContent=messages[0]||"";
+  if(messages.length){
+    goToPage(3,false);const first=$(Object.keys(issue)[0]);first.focus();first.scrollIntoView({block:"center"});return false;
+  }
+  return true;
+}
+function customerRequestText(){
+  const r=state.request;
+  return [
+    "RiceFort · 客戶報價要求",
+    "姓名："+r.name.trim(),"聯絡："+r.contact.trim(),"希望聯絡方式："+r.method,
+    r.notes.trim()?"其他要求："+r.notes.trim():"",
+    "",summary(false),"",r.confirmedAt?"確認時間："+new Date(r.confirmedAt).toLocaleString("zh-HK"):""
+  ].filter((line,index,array)=>line!==""||array[index-1]!=="").join("\n");
+}
+async function copyCustomerRequest(){
+  if(!requireDesign()||!validateCustomerRequest())return false;
+  const text=customerRequestText();
+  try{
+    if(!navigator.clipboard)throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(text);toast("已複製客戶報價要求摘要。");
+  }catch{
+    $("manualCopy").value=text;$("copyDialog").showModal();
+    setTimeout(()=>{$("manualCopy").focus();$("manualCopy").select();},50);
+  }
+  return true;
+}
+async function sendCustomerRequest(){
+  if(submitting||!requireDesign()||!validateCustomerRequest())return;
+  const status=$("customerRequestStatus");
+  const doc=serialize();
+  doc.request.confirmedAt="";
+  const fingerprint=JSON.stringify({...doc,savedAt:""});
+  if(sentFingerprint===fingerprint){
+    status.hidden=false;status.textContent="這份要求已提交成功，毋須重複傳送。";return;
+  }
+  const contact=state.request.contact.trim();
+  const payload={
+    name:state.request.name.trim(),
+    [contact.includes("@")?"email":"phone"]:contact,
+    contact_method:state.request.method,
+    project:"傢俬訂製 · "+(state.project.trim()||getProduct().name),
+    subject:"RiceFort 傢俬訂製報價要求",
+    message:customerRequestText(),
+    design_summary:summary(),
+    design_json:JSON.stringify(doc),
+    consent:"同意經 Formspree 傳送聯絡及設計資料予 RiceFort 跟進報價",
+    source:location.hostname==="127.0.0.1"||location.hostname==="localhost"?"本機預覽":"RiceFort 傢俬訂製"
+  };
+  submitting=true;status.hidden=false;status.textContent="正在傳送，請勿關閉頁面或重複提交……";
+  const controls=$$("button,input,select,textarea,summary").map(el=>[el,el.disabled]);
+  controls.forEach(([el])=>el.disabled=true);
+  $("customerStep3").setAttribute("aria-busy","true");
+  try{
+    await window.RiceFortSubmit(payload);
+    sentFingerprint=fingerprint;
+    status.textContent="報價要求已成功提交至 Formspree。RiceFort 將按你提供的聯絡方式跟進；這不是訂單確認或正式報價。";
+  }catch(error){
+    status.textContent=error.message||"提交未成功，資料仍然保留，請稍後再試。";
+  }finally{
+    submitting=false;controls.forEach(([el,disabled])=>el.disabled=disabled);
+    $("customerStep3").removeAttribute("aria-busy");
+    renderComputed();status.hidden=false;
+    status.scrollIntoView({block:"center",behavior:"smooth"});
+  }
+}
+async function confirmAction(title,text){
+  const dialog=$("confirmDialog");
+  if(!dialog.showModal)return window.confirm(title+"\n\n"+text);
+  if(dialog.open)return false;
+  $("confirmTitle").textContent=title;$("confirmText").textContent=text;
+  dialog.returnValue="cancel";dialog.showModal();
+  return new Promise(resolve=>dialog.addEventListener("close",()=>resolve(dialog.returnValue==="ok"),{once:true}));
+}
+async function resetConfiguration(){
+  if(!await confirmAction("還原此款預設？","尺寸、配置及顏色會還原至預設。設計名稱及數量會保留。"))return;
+  state.cfg=defaults(getProduct());state.request.confirmedAt="";drafts.delete(state.productId);
+  resetView();syncForm();refreshDesign(true);toast("已還原預設配置。");
+}
+async function newDesign(){
+  if(!await confirmAction("開始新的設計？","目前設計會被替換。需要保留設計，請先儲存設計檔。"))return;
+  state=initialState();drafts.clear();
+  clearFilters();resetView();syncForm();refreshDesign(true);renderCatalogue();goToPage(1);
+}
+
+/* Events */
+const actions={
+  save:saveJSON,import:()=>$("fileInput").click(),
+  app:()=>{download(new Blob([APP_HTML],{type:"text/html;charset=utf-8"}),IS_CUSTOMER?"RiceFort-customer-design.html":"RiceFort-internal-full-app.html");toast("已下載此版本 App。設計資料請另存 JSON。");},
+
+
+  new:newDesign,reset:resetConfiguration,sendRequest:sendCustomerRequest,copyCustomerRequest,
+  clearFilters,png:savePNG,copy:copySummary,share:shareDesign,
+  print:()=>{if(requireDesign())window.print();},
+  next:()=>IS_CUSTOMER
+    ?(state.page===3?sendCustomerRequest():goToPage(state.page+1))
+    :goToPage(state.page===4?1:state.page+1),
+  previous:()=>goToPage(state.page-1),resetView,
+  zoomIn:()=>{view.zoom=clamp(view.zoom*1.15,.55,2.5);requestPaint();},
+  zoomOut:()=>{view.zoom=clamp(view.zoom/1.15,.55,2.5);requestPaint();},
+  selectCopy:()=>{$("manualCopy").focus();$("manualCopy").select();}
+};
+document.addEventListener("click",async event=>{
+  const target=event.target.closest("[data-action],[data-page],[data-camera]");
+  if(target&&!target.disabled){
+    try{
+      if(target.dataset.action&&actions[target.dataset.action])await actions[target.dataset.action]();
+      else if(target.dataset.page)goToPage(target.dataset.page);
+      else if(target.dataset.camera)setCamera(target.dataset.camera);
+    }catch(e){report(e);toast(e.message||"操作未能完成。");}
+  }
+  if(!$("more").contains(event.target)||event.target.closest(".menu button"))$("more").open=false;
+});
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"&&$("more").open){$("more").open=false;$("more").querySelector("summary").focus();}
+});
+$("spaces").addEventListener("click",event=>{
+  const b=event.target.closest("[data-area]");if(!b)return;
+  filter.area=b.dataset.area;filter.category="all";filter.page=1;
+  renderSpaces();renderCategories();renderCatalogue();
+  document.querySelector(`[data-area="${filter.area}"]`)?.focus({preventScroll:true});
+});
+$("search").addEventListener("input",()=>{filter.search=$("search").value;filter.page=1;renderCatalogue();});
+$("category").addEventListener("change",()=>{filter.category=$("category").value;filter.page=1;renderCatalogue();});
+$("catalogue").addEventListener("click",event=>{
+  const b=event.target.closest("[data-product]");if(b)chooseProduct(b.dataset.product);
+});
+$("pagination").addEventListener("click",event=>{
+  const b=event.target.closest("[data-catalog-page]");if(!b||b.disabled)return;
+  filter.page=Number(b.dataset.catalogPage);renderCatalogue();$("catalogue").scrollIntoView({block:"start"});
+});
+$("swatches").addEventListener("click",event=>{
+  const b=event.target.closest("[data-finish]");if(!b)return;
+  state.cfg.finish=b.dataset.finish;
+  state.cfg.surface=b.dataset.finish==="F01"?"uv":"osmoColor";
+  state.request.confirmedAt="";
+  $("f-surface").value=state.cfg.surface;
+  renderSwatches();refreshDesign(true);
+  document.querySelector(`[data-finish="${state.cfg.finish}"]`)?.focus({preventScroll:true});
+});
+$("settings").addEventListener("submit",event=>{
+  event.preventDefault();if(current)goToPage(3);else focusError();
+});
+for(const field of $$("[data-field]")){
+  field.addEventListener(field.tagName==="SELECT"||field.type==="checkbox"?"change":"input",()=>{
+    const key=field.dataset.field;
+    const inputValue=field.type==="checkbox"?field.checked:
+      field.type==="number"?(field.value.trim()===""?NaN:Number(field.value)):field.value;
+    state.cfg[key]=key==="columns"&&Number.isFinite(inputValue)?inputValue+1:inputValue;
+    state.request.confirmedAt="";
+    let resync=false;
+    if(key==="interiorLayout"&&inputValue==="allDrawers"){
+      state.cfg.front="none";state.cfg.drawers=0;state.cfg.rail=false;state.cfg.partitionZone="full";
+      const usableDrawerHeight=state.cfg.h-(state.cfg.base==="none"?0:state.cfg.baseH)-2*T;
+      state.cfg.bayDrawers=Math.max(1,Math.min(state.cfg.bayDrawers,8,Math.floor(usableDrawerHeight/10)));
+      resync=true;
+    }
+    if((key==="shelfDistribution"&&inputValue==="custom")||(key==="shelves"&&state.cfg.shelfDistribution==="custom"&&Number.isInteger(state.cfg.shelves))) {
+      state.cfg.shelfHeights=equalShelfHeights(state.cfg,getProduct());resync=true;
+    }
+    if((key==="drawerDistribution"&&inputValue==="custom")||(["drawers","bayDrawers"].includes(key)&&state.cfg.drawerDistribution==="custom"&&Number.isInteger(drawerCount(state.cfg,getProduct())))||(key==="interiorLayout"&&inputValue==="allDrawers"&&state.cfg.drawerDistribution==="custom")){
+      state.cfg.drawerHeights=equalDrawerHeights(state.cfg,getProduct());resync=true;
+    }
+    if((key==="deskStorageDistribution"&&inputValue==="custom")||(["deskStorageMode","deskStorageCount"].includes(key)&&state.cfg.deskStorageDistribution==="custom"&&Number.isInteger(state.cfg.deskStorageCount))){
+      state.cfg.deskStorageHeights=equalDeskStorageHeights(state.cfg);resync=true;
+    }
+    if((key==="metalShelfDistribution"&&inputValue==="custom")||(key==="metalShelfLevels"&&state.cfg.metalShelfDistribution==="custom"&&Number.isInteger(state.cfg.metalShelfLevels))){
+      state.cfg.metalShelfHeights=equalMetalShelfHeights(state.cfg);resync=true;
+    }
+    if(key==="surface"){
+      if(state.cfg.surface!=="osmoColor")state.cfg.finish="F01";
+      else if(state.cfg.finish==="F01")state.cfg.finish="F02";
+      renderSwatches();
+    }
+    if(resync)syncForm();
+    refreshDesign(true);
+  });
+}
+$("settings").addEventListener("input",event=>{
+  const input=event.target.closest("[data-height-kind]");if(!input)return;
+  const heightKeys={shelf:"shelfHeights",drawer:"drawerHeights",desk:"deskStorageHeights",metal:"metalShelfHeights"};
+  const key=heightKeys[input.dataset.heightKind],index=Number(input.dataset.heightIndex);
+  if(!key)return;
+  state.cfg[key][index]=input.value.trim()===""?NaN:Number(input.value);
+  state.request.confirmedAt="";refreshDesign(true);
+});
+function updateProject(value){
+  state.project=value.slice(0,100);
+  if($("customerProject"))$("customerProject").value=state.project;
+  state.request.confirmedAt="";
+  refreshDesign(true);
+}
+function updateQuantity(value){
+  state.quantity=value.trim()===""?NaN:Number(value);
+  if($("customerQuantity"))$("customerQuantity").value=value;
+  state.request.confirmedAt="";
+  refreshDesign(true);
+}
+
+
+$("customerProject")?.addEventListener("input",()=>updateProject($("customerProject").value));
+for(const eventName of ["input","change"]){
+  document.addEventListener(eventName,()=>{
+    if(!submitting) $("customerRequestStatus").hidden=true;
+  });
+}
+$("customerQuantity")?.addEventListener("input",()=>updateQuantity($("customerQuantity").value));
+for(const [id,key] of [["requestName","name"],["requestContact","contact"],["requestMethod","method"],["requestNotes","notes"]]){
+  $(id)?.addEventListener(id==="requestMethod"?"change":"input",()=>{
+    state.request[key]=$(id).value;state.request.confirmedAt="";
+    $(id).removeAttribute("aria-invalid");$("err-"+id)?.setAttribute("hidden","");
+    $("requestErrors").hidden=true;queueSave();renderComputed();
+  });
+}
+$("requestConsent")?.addEventListener("change",()=>{
+  state.request.consent=$("requestConsent").checked;state.request.confirmedAt="";
+  $("requestConsent").removeAttribute("aria-invalid");$("err-requestConsent").hidden=true;
+  $("requestErrors").hidden=true;queueSave();renderComputed();
+});
+$("opening").addEventListener("input",()=>{
+  view.open=Number($("opening").value)/100;$("openingValue").textContent=$("opening").value+"%";requestPaint();
+});
+$("explosion").addEventListener("input",()=>{
+  view.explode=Number($("explosion").value)/100;$("explosionValue").textContent=$("explosion").value+"%";requestPaint();
+});
+$("cutaway").addEventListener("change",()=>{view.cutaway=$("cutaway").checked;requestPaint();});
+
+let drag=null;
+const canvas=$("preview");
+canvas.addEventListener("pointerdown",event=>{
+  if(!current||event.button!==0)return;
+  drag={id:event.pointerId,x:event.clientX,y:event.clientY};
+  canvas.setPointerCapture(event.pointerId);canvas.classList.add("dragging");canvas.focus({preventScroll:true});
+});
+canvas.addEventListener("pointermove",event=>{
+  if(!drag||drag.id!==event.pointerId)return;
+  view.yaw+=(event.clientX-drag.x)*.008;
+  view.pitch=clamp(view.pitch+(event.clientY-drag.y)*.006,0,1.35);
+  drag.x=event.clientX;drag.y=event.clientY;view.camera="";syncCameraButtons();requestPaint();
+});
+function endDrag(event){
+  if(!drag||event.pointerId!==drag.id)return;
+  if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId);
+  drag=null;canvas.classList.remove("dragging");
+}
+canvas.addEventListener("pointerup",endDrag);canvas.addEventListener("pointercancel",endDrag);
+canvas.addEventListener("lostpointercapture",()=>{drag=null;canvas.classList.remove("dragging");});
+canvas.addEventListener("wheel",event=>{
+  if(!current)return;
+  event.preventDefault();view.zoom=clamp(view.zoom*Math.exp(-event.deltaY*.001),.55,2.5);requestPaint();
+},{passive:false});
+canvas.addEventListener("keydown",event=>{
+  if(!["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","+","=","-","0"].includes(event.key))return;
+  event.preventDefault();
+  if(event.key==="0"){resetView();return;}
+  if(event.key==="ArrowLeft")view.yaw-=.12;
+  if(event.key==="ArrowRight")view.yaw+=.12;
+  if(event.key==="ArrowUp")view.pitch=clamp(view.pitch+.08,0,1.35);
+  if(event.key==="ArrowDown")view.pitch=clamp(view.pitch-.08,0,1.35);
+  if(event.key==="+"||event.key==="=")view.zoom=clamp(view.zoom*1.1,.55,2.5);
+  if(event.key==="-")view.zoom=clamp(view.zoom/1.1,.55,2.5);
+  view.camera="";syncCameraButtons();requestPaint();
+});
+if(window.ResizeObserver)new ResizeObserver(requestPaint).observe(canvas);
+else window.addEventListener("resize",requestPaint);
+
+$("fileInput").addEventListener("change",async event=>{
+  const file=event.target.files?.[0];event.target.value="";if(!file)return;
+  try{
+    if(file.size>2*1024*1024)throw new Error("請使用 2 MB 以下的設計 JSON。");
+    const data=JSON.parse(await file.text()),next=decodeDocument(data);
+    const replaceText="目前設計會被取代；只載入款式、配置及客戶資料。";
+    if(!await confirmAction("載入這個設計？",replaceText))return;
+    state=next;drafts.clear();clearFilters();resetView();syncForm();refreshDesign(true);
+    renderCatalogue();goToPage(2);
+    toast("已載入設計。");
+  }catch(e){toast("未能載入："+e.message);}
+});
+
+/* Boot: do not overwrite saved data with defaults. */
+document.title=IS_CUSTOMER?"RiceFort · 客戶傢俬設計確認":"RiceFort · 內部傢俬設計室";
+$("editionLabel").textContent=IS_CUSTOMER?"客戶設計確認 · CUSTOMER DESIGN":"內部傢俬設計室 · FULL STUDIO";
+$("totalTemplates").textContent=CATALOGUE.length;
+$("officeTemplates").textContent=CATALOGUE.filter(p=>p.area==="辦公室").length;
+renderSpaces();renderCategories();syncForm();refreshDesign(false);renderCatalogue();goToPage(state.page,false);
+if(restored){
+  $("saveStatus").textContent="已還原上次客戶設計";
+  toast("已還原上次客戶設計。");
+}else if(restoreFailed){
+  $("saveStatus").textContent="暫存未能還原 · 原資料未被自動覆蓋";
+  toast("暫存未能還原，先顯示預設款式。");
+}
+})();
+</script>
+<script src="furniture-flow.js"></script>
+
+</body></html>
