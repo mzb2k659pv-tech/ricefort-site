@@ -430,7 +430,7 @@
         [13, 84, 4, 66, 4, 50], [4, 34, 13, 16, 29, 4]
       ];
       var reduceMotion = prefersReducedMotion;
-      var compactJourney = window.matchMedia('(max-width: 720px)').matches;
+      var compactJourney = window.matchMedia('(max-width: 760px)').matches;
       var scheduled = false;
       function between(start, end, amount) { return start + (end - start) * amount; }
       function makeJourneyPath(amount, width) {
@@ -454,7 +454,22 @@
           window.removeEventListener('resize', requestJourney);
           return;
         }
-        var progress = compactJourney ? 0 : 1;
+        compactJourney = window.matchMedia('(max-width: 760px)').matches;
+        if (compactJourney) {
+          if (!journey.querySelector('.rice-journey-mobile-image')) {
+            var mobileImage = document.createElement('img');
+            mobileImage.className = 'rice-journey-mobile-image';
+            mobileImage.src = journeyImage.getAttribute('href');
+            mobileImage.alt = '';
+            journey.appendChild(mobileImage);
+          }
+          if (journeyCopy) {
+            journeyCopy.style.removeProperty('opacity');
+            journeyCopy.style.removeProperty('transform');
+          }
+          return;
+        }
+        var progress = 1;
         if (!reduceMotion && !compactJourney) {
           var distance = Math.max(journeySection.offsetHeight - window.innerHeight, 1);
           progress = Math.max(0, Math.min(1, (window.scrollY - journeySection.offsetTop) / distance));
